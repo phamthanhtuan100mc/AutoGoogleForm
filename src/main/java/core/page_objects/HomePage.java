@@ -1,4 +1,4 @@
-package page_objects;
+package core.page_objects;
 
 public class HomePage extends BasePage {
 
