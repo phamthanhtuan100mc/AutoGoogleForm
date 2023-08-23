@@ -2,6 +2,7 @@ package core.wrappers;
 
 import core.factory.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
 
 public class DriverWrapper extends WebDriverFactory {
 
@@ -16,12 +17,24 @@ public class DriverWrapper extends WebDriverFactory {
         return instance;
     }
 
-    public static WebDriver getDriver() {
-        return driver.get();
+    public static void closeBrowser() {
+        driver.get().quit();
+        driver.remove();
     }
 
-    public static void setDriver(String browser, boolean remote) {
-        setWebDriver(browser, remote);
+    public static void switchToNewTab() {
+        try {
+            driver.get().switchTo().newWindow(WindowType.TAB);
+        } catch (Exception e) {
+
+        }
     }
 
+    public static void get(String url) {
+        try {
+            driver.get().get(url);
+        } catch (Exception e) {
+
+        }
+    }
 }

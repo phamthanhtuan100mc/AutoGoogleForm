@@ -28,4 +28,12 @@ public class WebDriverFactory {
         WebDriverManager.chromedriver().setup();
         driver.set(new ChromeDriver());
     }
+
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    public static void setDriver(String browser, boolean remote) {
+        setWebDriver(browser, remote);
+    }
 }
