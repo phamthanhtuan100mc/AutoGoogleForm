@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.List;
+
 public class ElementWrapper {
     private String _xpath;
     private final int _elementTimeout = Constant.WAIT_TIMEOUT; //In second
@@ -17,6 +19,10 @@ public class ElementWrapper {
 //    public ElementWrapper(By by) {
 //        this._by = by;
 //    }
+
+    public ElementWrapper(WebElement element) {
+        this._element = element;
+    }
 
     public ElementWrapper(String locator, Object... args) {
         if (args != null && args.length > 0) {
@@ -34,5 +40,13 @@ public class ElementWrapper {
 
     public WebElement getElement() {
         return this._element;
+    }
+
+    public List<WebElement> getElementList() {
+        try {
+            return driver.findElements(this._by);
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
     }
 }

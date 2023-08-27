@@ -1,12 +1,16 @@
 package core.wrappers;
 
 import core.factory.WebDriverFactory;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class DriverWrapper extends WebDriverFactory {
 
     private static DriverWrapper instance = null;
+    private static long pageTimeout = 30;
 
     private DriverWrapper() {}
 
@@ -37,4 +41,23 @@ public class DriverWrapper extends WebDriverFactory {
 
         }
     }
+
+//    public static void setPageLoadTimeOut(long timeOut) {
+//        try {
+//            driver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(timeOut));
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    public static void setPageLoadTimeOut() {
+//        setPageLoadTimeOut(pageTimeout);
+//    }
+
+    public static void waitForPageLoad() {
+        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
+        wait.until(webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
+    }
+
+
 }

@@ -9,6 +9,7 @@ public abstract class BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         DriverWrapper.setDriver("chrome", false);
+//        DriverWrapper.setPageLoadTimeOut();
     }
 
     @AfterMethod

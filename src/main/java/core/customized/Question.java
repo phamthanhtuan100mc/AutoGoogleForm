@@ -1,6 +1,20 @@
 package core.customized;
 
-public abstract class Question {
+import org.openqa.selenium.WebElement;
 
-    private String locator;
+import java.util.List;
+
+public class Question {
+
+    private String _locator;
+    private WebElement _element;
+
+    public Question(String locator) {
+        this._locator = locator;
+    }
+
+    public Question(WebElement element) {
+        this._element = element;
+    }
+
 }

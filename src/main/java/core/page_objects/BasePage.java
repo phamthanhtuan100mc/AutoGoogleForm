@@ -10,7 +10,7 @@ public abstract class BasePage {
 
     protected String _form = "//form[@method='POST']";
     protected String _btnSubmit = "//div[@role='button'][span/descendant::span[contains(text(), 'Gửi')]]";
-    protected String _listItem = "//div[@class='o3Dpx'][@role='list']/div[@role='listitem']";
+    protected String _formList = "//div[@class='o3Dpx'][@role='list']";
 
     protected ElementWrapper getBtnSubmit(String text) {
         return new ElementWrapper(this._btnSubmit, text);
@@ -18,8 +18,8 @@ public abstract class BasePage {
 
     public void openPage() {
         final String url = Constant.TEST_URL;
-        DriverWrapper.switchToNewTab();
         DriverWrapper.get(url);
+        DriverWrapper.waitForPageLoad();
     }
 
 }
