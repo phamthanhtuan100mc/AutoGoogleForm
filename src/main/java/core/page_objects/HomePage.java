@@ -2,8 +2,6 @@ package core.page_objects;
 
 import core.customized.Form;
 import core.customized.Question;
-import core.wrappers.ElementWrapper;
-import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
@@ -22,6 +20,10 @@ public class HomePage extends BasePage {
         List<Question> questionList = null;
         questionList = formList.getAllQuestion();
         return questionList;
+    }
+
+    public void randomFillResult() {
+        
     }
 
 }

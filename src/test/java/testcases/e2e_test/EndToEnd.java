@@ -1,12 +1,13 @@
-package testcases;
+package testcases.e2e_test;
 
 import core.customized.Question;
 import core.page_objects.HomePage;
 import org.testng.annotations.Test;
+import testcases.BaseTest;
 
 import java.util.List;
 
-public class e2eTest extends BaseTest {
+public class EndToEnd extends BaseTest {
 
     HomePage homePage;
 
@@ -16,6 +17,7 @@ public class e2eTest extends BaseTest {
 
         homePage.openPage();
         List<Question> questionList = homePage.getQuestionList();
+        homePage.randomFillResult();
 
     }
 }
