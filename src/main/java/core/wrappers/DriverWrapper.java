@@ -22,8 +22,12 @@ public class DriverWrapper extends WebDriverFactory {
     }
 
     public static void closeBrowser() {
-        driver.get().quit();
-        driver.remove();
+        try {
+            driver.get().quit();
+            driver.remove();
+        } catch (Exception e) {
+
+        }
     }
 
     public static void switchToNewTab() {
@@ -55,8 +59,16 @@ public class DriverWrapper extends WebDriverFactory {
 //    }
 
     public static void waitForPageLoad() {
-        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
-        wait.until(webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
+        try {
+            WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
+            wait.until(webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
+        } catch (Exception e) {
+            System.out.println("error happened");
+        }
+    }
+
+    public static void maximize() {
+
     }
 
 
