@@ -1,5 +1,6 @@
 package core.customized;
 
+import core.customized.question_item.TimeQuestion;
 import core.wrappers.ElementWrapper;
 import org.openqa.selenium.WebElement;
 
@@ -21,7 +22,8 @@ public class Form {
         webElementList = question.getElementList();
 
         for(WebElement element: webElementList) {
-            questionList.add(new Question(element));
+            Question q = new TimeQuestion(element);
+            questionList.add(q);
         }
 
         return questionList;

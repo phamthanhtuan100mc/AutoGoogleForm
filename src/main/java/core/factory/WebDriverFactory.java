@@ -3,6 +3,7 @@ package core.factory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 
 public class WebDriverFactory {
 
@@ -25,8 +26,14 @@ public class WebDriverFactory {
     }
 
     private static void setChromeDriver() {
-        WebDriverManager.chromedriver().setup();
-//        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-mac-arm64/chromedriver");
+        String osName = System.getProperty("os.name");
+        if (osName.startsWith("Windows")) {
+//            WebDriverManager.chromedriver().setup();
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-win64/chromedriver.exe");
+        } else if (osName.startsWith("Mac")) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-mac-arm64/chromedriver");
+        }
+//        ChromeDriverService service = new ChromeDriverService.Builder().build();
         driver.set(new ChromeDriver());
     }
 
