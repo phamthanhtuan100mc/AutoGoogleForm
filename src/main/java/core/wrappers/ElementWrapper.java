@@ -1,12 +1,16 @@
 package core.wrappers;
 
-import core.utils.Constant;
+import core.util.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
+import core.util.Timer;
 
 public class ElementWrapper {
     private String _xpath;
@@ -49,4 +53,50 @@ public class ElementWrapper {
             throw new RuntimeException();
         }
     }
+
+    public void waitForDisplay(int timeOut) {
+        try {
+            new WebDriverWait(this.driver, Duration.ofSeconds(timeOut))
+                    .until(ExpectedConditions.visibilityOfElementLocated(this._by));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void waitForDisplay() {
+        this.waitForDisplay(this._elementTimeout);
+    }
+
+    public void clear() {
+        this.waitForDisplay();
+        try {
+            this.getElement().clear();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void type(String value, boolean isWait) {
+        if (!isWait) {
+            Timer.sleep(1000);
+        } else {
+            this.waitForDisplay();
+        }
+        try {
+            this.getElement().sendKeys(value);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void type(String value) {
+        this.type(value, true);
+    }
+
+    public void enter(String value) {
+        this.clear();
+        this.type(value);
+    }
+
+
 }

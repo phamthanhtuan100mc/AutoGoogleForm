@@ -1,10 +1,8 @@
 package core.page_objects;
 
-import core.utils.Constant;
+import core.util.Constant;
 import core.wrappers.DriverWrapper;
 import core.wrappers.ElementWrapper;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public abstract class BasePage {
 
