@@ -22,7 +22,7 @@ public class HomePage extends BasePage {
         return questionList;
     }
 
-    public void randomFillResult() {
+    public void randomFillResult(List<Question> questionList) {
         
     }
 

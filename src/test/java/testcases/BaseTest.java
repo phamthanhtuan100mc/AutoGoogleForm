@@ -7,13 +7,13 @@ import org.testng.annotations.BeforeMethod;
 public abstract class BaseTest {
 
     @BeforeMethod
-    public void beforeMethod() {
+    public void setupTest() {
         DriverWrapper.setDriver("chrome", false);
 //        DriverWrapper.setPageLoadTimeOut();
     }
 
     @AfterMethod
-    public void afterMethod() {
+    public void tearDown() {
         DriverWrapper.getDriver().quit();
     }
 }

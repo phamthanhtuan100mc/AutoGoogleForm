@@ -25,8 +25,8 @@ public class WebDriverFactory {
     }
 
     private static void setChromeDriver() {
-//        WebDriverManager.chromedriver().setup();
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-mac-arm64/chromedriver");
+        WebDriverManager.chromedriver().setup();
+//        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-mac-arm64/chromedriver");
         driver.set(new ChromeDriver());
     }
 

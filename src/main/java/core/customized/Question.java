@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class Question {
+public abstract class Question {
 
     private String _locator;
     private WebElement _element;
@@ -17,4 +17,7 @@ public class Question {
         this._element = element;
     }
 
+    public void fillAnswer() {
+
+    }
 }

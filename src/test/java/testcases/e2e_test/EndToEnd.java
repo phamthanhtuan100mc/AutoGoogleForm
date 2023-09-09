@@ -17,7 +17,7 @@ public class EndToEnd extends BaseTest {
 
         homePage.openPage();
         List<Question> questionList = homePage.getQuestionList();
-        homePage.randomFillResult();
+        homePage.randomFillResult(questionList);
 
     }
 }
