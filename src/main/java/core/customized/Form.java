@@ -1,7 +1,7 @@
 package core.customized;
 
 import core.customized.question_item.TimeQuestion;
-import core.wrappers.ElementWrapper;
+import core.wrapper.ElementWrapper;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -16,8 +16,9 @@ public class Form {
     }
 
     public List<Question> getAllQuestion() {
-        List<WebElement> webElementList = new ArrayList<>();
+        List<WebElement> webElementList;
         List<Question> questionList = new ArrayList<>();
+
         ElementWrapper question = new ElementWrapper(this._locator + "/div[@role='listitem']");
         webElementList = question.getElementList();
 

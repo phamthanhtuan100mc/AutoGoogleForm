@@ -4,11 +4,13 @@ import core.customized.Question;
 import org.openqa.selenium.WebElement;
 
 public class CheckboxQuestion extends Question {
-    public CheckboxQuestion(String locator) {
-        super(locator);
-    }
+
 
     public CheckboxQuestion(WebElement element) {
         super(element);
+    }
+
+    public CheckboxQuestion(String locator, Object... args) {
+        super(locator, args);
     }
 }

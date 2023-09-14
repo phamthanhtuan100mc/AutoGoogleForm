@@ -3,7 +3,7 @@
 <suite name="Google Form Testing" verbose="1" thread-count="2" parallel="methods">
     <test name="Main Test Suite">
         <classes>
-            <class name="testcases.e2e_test.EndToEnd"/>
+            <class name="testcase.e2e_test.EndToEnd"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
