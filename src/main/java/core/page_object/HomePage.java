@@ -2,6 +2,7 @@ package core.page_object;
 
 import core.customized.Form;
 import core.customized.Question;
+import core.factory.QuestionFactory;
 
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class HomePage extends BasePage {
 
     public void randomFillResult(List<Question> questionList) {
         for (Question question: questionList) {
-
+            question = QuestionFactory.getSpecificQuestion(question);
+            System.out.println(question.getClass());
         }
     }
 

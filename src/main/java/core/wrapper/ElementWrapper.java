@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import core.util.Timer;
 
@@ -45,9 +46,14 @@ public class ElementWrapper {
         return this._element;
     }
 
-    public List<WebElement> getElementList() {
+    public List<ElementWrapper> getElementList() {
         try {
-            return driver.findElements(this._by);
+            List<ElementWrapper> elementList = new ArrayList<>();
+            int count = driver.findElements(this._by).size();
+            for (int i = 1; i <= count; i++) {
+                elementList.add(new ElementWrapper(this._xpath + "[%d]", i));
+            }
+            return elementList;
         } catch (Exception e) {
             throw new RuntimeException();
         }

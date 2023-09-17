@@ -16,16 +16,13 @@ public class Form {
     }
 
     public List<Question> getAllQuestion() {
-        List<WebElement> webElementList;
-        List<Question> questionList = new ArrayList<>();
+        List<ElementWrapper> webElementList;
+        List<Question> questionList;
 
         ElementWrapper question = new ElementWrapper(this._locator + "/div[@role='listitem']");
         webElementList = question.getElementList();
 
-        for(WebElement element: webElementList) {
-            Question q = new TimeQuestion(element);
-            questionList.add(q);
-        }
+        questionList = Question.identifyQuestionList(webElementList);
 
         return questionList;
     }
