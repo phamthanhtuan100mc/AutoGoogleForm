@@ -29,10 +29,10 @@ public abstract class Question extends ElementWrapper {
         Question question;
         long noTimeout = 0;
 
-        question = new ShortAnswerQuestion(element.getElementXpath(), "//...");
+        question = new ShortAnswerQuestion(element.getElementXpath() + "//error");
 
         if (!question.isDisplayed(noTimeout)) {
-            question = new ParagraphQuestion(element.getElementXpath(), "//textarea");
+            question = new ParagraphQuestion(element.getElementXpath() + "//textarea");
 
             if (!question.isDisplayed(noTimeout)) {
                 question = null;

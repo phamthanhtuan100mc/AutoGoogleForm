@@ -23,8 +23,9 @@ public class HomePage extends BasePage {
 
     public void randomFillResult(List<Question> questionList) {
         for (Question question: questionList) {
-            question = QuestionFactory.getSpecificQuestion(question);
-            System.out.println(question.getClass());
+            if (question != null) {
+                System.out.println(question.getClass());
+            }
         }
     }
 

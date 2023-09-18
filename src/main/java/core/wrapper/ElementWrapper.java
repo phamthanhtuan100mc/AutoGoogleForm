@@ -35,7 +35,6 @@ public class ElementWrapper {
 
         this._xpath = locator;
         this._by = By.xpath(this._xpath);
-        this._element = driver.findElement(this._by);
     }
 
     public String getElementXpath() {
@@ -43,7 +42,11 @@ public class ElementWrapper {
     }
 
     public WebElement getElement() {
-        return this._element;
+        try {
+            return driver.findElement(this._by);
+        } catch (NoSuchElementException nsee) {
+            return null;
+        }
     }
 
     public List<ElementWrapper> getElementList() {
@@ -119,6 +122,8 @@ public class ElementWrapper {
                 isDisplay = false;
             } catch (StaleElementReferenceException e) {
                 isDisplay = false;
+            } catch (NullPointerException npe) {
+
             }
             Timer.sleep(500);
         }
