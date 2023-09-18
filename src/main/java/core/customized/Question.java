@@ -27,13 +27,14 @@ public abstract class Question extends ElementWrapper {
 
     public static Question identifyQuestion(ElementWrapper element) {
         Question question;
+        long noTimeout = 0;
 
         question = new ShortAnswerQuestion(element.getElementXpath(), "//...");
 
-        if (!question.isDisplayed(0)) {
+        if (!question.isDisplayed(noTimeout)) {
             question = new ParagraphQuestion(element.getElementXpath(), "//textarea");
 
-            if (!question.isDisplayed(0)) {
+            if (!question.isDisplayed(noTimeout)) {
                 question = null;
             } else {
                 System.out.println("Textarea");

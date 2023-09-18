@@ -18,9 +18,7 @@ public class HomePage extends BasePage {
     // Methods
 
     public List<Question> getQuestionList() {
-        List<Question> questionList = null;
-        questionList = formList.getAllQuestion();
-        return questionList;
+        return formList.getAllQuestion();
     }
 
     public void randomFillResult(List<Question> questionList) {
