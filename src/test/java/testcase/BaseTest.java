@@ -14,6 +14,6 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        DriverWrapper.getDriver().quit();
+        DriverWrapper.closeBrowser();
     }
 }
