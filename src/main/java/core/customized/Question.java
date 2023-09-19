@@ -13,6 +13,8 @@ public abstract class Question extends ElementWrapper {
     private String _locator;
     private WebElement _element;
 
+    private FillResultBehavior fillResultBehavior;
+
     public Question(WebElement element) {
         super(element);
     }
@@ -36,9 +38,6 @@ public abstract class Question extends ElementWrapper {
 
             if (!question.isDisplayed(noTimeout)) {
                 question = null;
-            } else {
-                System.out.println("Textarea");
-                System.out.println(element.getElementXpath());
             }
         }
         return question;
