@@ -32,7 +32,7 @@ public abstract class Question extends ElementWrapper {
         Question question;
         long noTimeout = 0;
 
-        question = new ShortAnswerQuestion(element.getElementXpath() + "//error");
+        question = new ShortAnswerQuestion(element.getElementXpath() + "//input[@type='text']");
 
         if (!question.isDisplayed(noTimeout)) {
             question = new ParagraphQuestion(element.getElementXpath() + "//textarea");
@@ -40,6 +40,9 @@ public abstract class Question extends ElementWrapper {
             if (!question.isDisplayed(noTimeout)) {
                 question = null;
             }
+        }
+        if (question != null) {
+            System.out.println(question.getElementXpath());
         }
         return question;
     }

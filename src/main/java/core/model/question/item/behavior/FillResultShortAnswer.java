@@ -7,6 +7,7 @@ public class FillResultShortAnswer implements FillResultBehavior {
     @Override
     public void fillResult() {
         // do something
+        System.out.println("Test fill result for short answer");
     }
 
 }
