@@ -1,8 +1,8 @@
 package core.factory;
 
-import core.customized.question.Question;
-import core.customized.question.item.ParagraphQuestion;
-import core.customized.question.item.ShortAnswerQuestion;
+import core.model.question.Question;
+import core.model.question.item.ParagraphQuestion;
+import core.model.question.item.ShortAnswerQuestion;
 
 public class QuestionFactory {
     public static Question getSpecificQuestion(Question question) {

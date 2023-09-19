@@ -1,7 +1,7 @@
-package core.customized.question;
+package core.model.question;
 
-import core.customized.question.item.ParagraphQuestion;
-import core.customized.question.item.ShortAnswerQuestion;
+import core.model.question.item.ParagraphQuestion;
+import core.model.question.item.ShortAnswerQuestion;
 import core.wrapper.ElementWrapper;
 import org.openqa.selenium.WebElement;
 

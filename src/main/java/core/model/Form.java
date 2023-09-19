@@ -1,6 +1,6 @@
-package core.customized;
+package core.model;
 
-import core.customized.question.Question;
+import core.model.question.Question;
 import core.wrapper.ElementWrapper;
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package core.customized.question.item.behavior;
+package core.model.question.item.behavior;
 
-import core.customized.question.FillResultBehavior;
+import core.model.question.FillResultBehavior;
 
 public class FillResultParagraph implements FillResultBehavior {
 

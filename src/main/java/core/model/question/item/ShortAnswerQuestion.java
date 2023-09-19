@@ -1,6 +1,6 @@
-package core.customized.question.item;
+package core.model.question.item;
 
-import core.customized.question.Question;
+import core.model.question.Question;
 import org.openqa.selenium.WebElement;
 
 public class ShortAnswerQuestion extends Question {
