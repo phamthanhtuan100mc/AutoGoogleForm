@@ -1,4 +1,4 @@
-package core.customized;
+package core.customized.question;
 
 public interface FillResultBehavior {
     public void fillResult();

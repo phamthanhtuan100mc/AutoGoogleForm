@@ -1,8 +1,7 @@
 package core.page_object;
 
 import core.customized.Form;
-import core.customized.Question;
-import core.factory.QuestionFactory;
+import core.customized.question.Question;
 
 import java.util.List;
 

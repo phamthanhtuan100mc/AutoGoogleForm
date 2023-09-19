@@ -1,7 +1,7 @@
-package core.customized;
+package core.customized.question;
 
-import core.customized.question_item.ParagraphQuestion;
-import core.customized.question_item.ShortAnswerQuestion;
+import core.customized.question.item.ParagraphQuestion;
+import core.customized.question.item.ShortAnswerQuestion;
 import core.wrapper.ElementWrapper;
 import org.openqa.selenium.WebElement;
 
@@ -23,8 +23,12 @@ public abstract class Question extends ElementWrapper {
         super(locator, args);
     }
 
-    public void fillAnswer() {
+    public void performFillResult() {
+        fillResultBehavior.fillResult();
+    }
 
+    public void setFillResultBehavior(FillResultBehavior behavior) {
+        this.fillResultBehavior = behavior;
     }
 
     public static Question identifyQuestion(ElementWrapper element) {

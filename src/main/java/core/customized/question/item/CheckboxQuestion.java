@@ -1,6 +1,6 @@
-package core.customized.question_item;
+package core.customized.question.item;
 
-import core.customized.Question;
+import core.customized.question.Question;
 import org.openqa.selenium.WebElement;
 
 public class CheckboxQuestion extends Question {

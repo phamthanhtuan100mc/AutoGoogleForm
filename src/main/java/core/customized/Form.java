@@ -1,10 +1,8 @@
 package core.customized;
 
-import core.customized.question_item.TimeQuestion;
+import core.customized.question.Question;
 import core.wrapper.ElementWrapper;
-import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Form {

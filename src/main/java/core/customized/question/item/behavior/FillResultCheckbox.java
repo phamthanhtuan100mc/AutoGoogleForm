@@ -1,6 +1,6 @@
-package core.customized.question_item.behavior;
+package core.customized.question.item.behavior;
 
-import core.customized.FillResultBehavior;
+import core.customized.question.FillResultBehavior;
 
 public class FillResultCheckbox implements FillResultBehavior {
 
