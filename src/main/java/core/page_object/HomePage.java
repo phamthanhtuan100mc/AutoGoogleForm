@@ -20,12 +20,16 @@ public class HomePage extends BasePage {
         return formList.getAllQuestion();
     }
 
-    public void randomFillResult(List<Question> questionList) {
+    public void randomFillAllResult(List<Question> questionList) {
         for (Question question: questionList) {
             if (question != null) {
-
+                ramdomFillResult(question);
             }
         }
+    }
+
+    public void ramdomFillResult(Question question) {
+        question.performFillResult();
     }
 
 }

@@ -25,7 +25,7 @@ public abstract class Question extends ElementWrapper {
     }
 
     public void setFillResultBehavior(FillResultBehavior behavior) {
-        this.fillResultBehavior = behavior;
+        fillResultBehavior = behavior;
     }
 
     public static Question identifyQuestion(ElementWrapper element) {
