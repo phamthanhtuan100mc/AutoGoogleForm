@@ -10,9 +10,6 @@ import java.util.List;
 
 public abstract class Question extends ElementWrapper {
 
-    private String _locator;
-    private WebElement _element;
-
     private FillResultBehavior fillResultBehavior;
 
     public Question(WebElement element) {
