@@ -1,7 +1,7 @@
-package core.model.question.item;
+package core.customized.question.item;
 
-import core.model.question.Question;
-import core.model.question.item.behavior.FillResultLinearScale;
+import core.customized.question.Question;
+import core.customized.question.item.behavior.FillResultLinearScale;
 import org.openqa.selenium.WebElement;
 
 public class LinearScaleQuestion extends Question {

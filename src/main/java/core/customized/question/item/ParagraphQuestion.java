@@ -1,7 +1,7 @@
-package core.model.question.item;
+package core.customized.question.item;
 
-import core.model.question.Question;
-import core.model.question.item.behavior.FillResultParagraph;
+import core.customized.question.Question;
+import core.customized.question.item.behavior.FillResultParagraph;
 import org.openqa.selenium.WebElement;
 
 public class ParagraphQuestion extends Question {

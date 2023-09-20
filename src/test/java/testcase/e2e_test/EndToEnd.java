@@ -1,6 +1,6 @@
 package testcase.e2e_test;
 
-import core.model.question.Question;
+import core.customized.question.Question;
 import core.page_object.HomePage;
 import org.testng.annotations.Test;
 import testcase.BaseTest;

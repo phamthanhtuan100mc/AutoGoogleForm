@@ -1,4 +1,4 @@
-package core.model.question;
+package core.customized.question;
 
 public interface FillResultBehavior {
     public void fillResult();
