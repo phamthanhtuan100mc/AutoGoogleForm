@@ -11,6 +11,7 @@ public class Enum {
         MULTIPLE_CHOICE_GRID,
         PARAGRAPH,
         SHORT_ANSWER,
-        TIME
+        TIME,
+        NULL
     }
 }

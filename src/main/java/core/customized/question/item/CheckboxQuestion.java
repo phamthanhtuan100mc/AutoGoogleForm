@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 
 public class CheckboxQuestion extends Question {
 
-
     public CheckboxQuestion(WebElement element) {
         super(element);
         setFillResultBehavior(new FillResultCheckbox());

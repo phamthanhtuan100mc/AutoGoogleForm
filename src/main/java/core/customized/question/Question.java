@@ -2,6 +2,8 @@ package core.customized.question;
 
 import core.customized.question.item.ParagraphQuestion;
 import core.customized.question.item.ShortAnswerQuestion;
+import core.factory.QuestionFactory;
+import core.util.Enum.QuestionType;
 import core.wrapper.ElementWrapper;
 import org.openqa.selenium.WebElement;
 
@@ -10,6 +12,7 @@ import java.util.List;
 
 public abstract class Question extends ElementWrapper {
 
+    private String _locatorTextarea = "//input[@type='text']";
     private FillResultBehavior fillResultBehavior;
 
     public Question(WebElement element) {
@@ -28,29 +31,34 @@ public abstract class Question extends ElementWrapper {
         fillResultBehavior = behavior;
     }
 
-    public static Question identifyQuestion(ElementWrapper element) {
+    public static QuestionType identifyQuestion(ElementWrapper element) {
         Question question;
         long noTimeout = 0;
 
         question = new ShortAnswerQuestion(element.getElementXpath() + "//input[@type='text']");
 
-        if (!question.isDisplayed(noTimeout)) {
+        if (question.getElement() == null) {
             question = new ParagraphQuestion(element.getElementXpath() + "//textarea");
 
-            if (!question.isDisplayed(noTimeout)) {
-                question = null;
+            if (question.getElement() == null) {
+                return QuestionType.NULL;
+            } else {
+                return QuestionType.PARAGRAPH;
             }
+        } else {
+            return QuestionType.SHORT_ANSWER;
         }
-        if (question != null) {
-            System.out.println(question.getElementXpath());
-        }
-        return question;
     }
 
     public static List<Question> identifyQuestionList(List<ElementWrapper> elementList) {
         List<Question> questionList = new ArrayList<>();
         for (ElementWrapper element: elementList) {
-            questionList.add(identifyQuestion(element));
+            questionList.add(
+                    QuestionFactory.getSpecificQuestion(
+                            identifyQuestion(element),
+                            element.getElementXpath()
+                    )
+            );
         }
         return questionList;
     }

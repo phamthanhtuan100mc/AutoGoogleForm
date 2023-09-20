@@ -5,6 +5,7 @@ import core.customized.question.item.behavior.FillResultCheckboxGrid;
 import org.openqa.selenium.WebElement;
 
 public class CheckboxGridQuestion extends Question {
+
     public CheckboxGridQuestion(WebElement element) {
         super(element);
         setFillResultBehavior(new FillResultCheckboxGrid());

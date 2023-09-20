@@ -35,6 +35,10 @@ public class ElementWrapper {
 
         this._xpath = locator;
         this._by = By.xpath(this._xpath);
+        try {
+            this._element = driver.findElement(_by);
+        } catch (NoSuchElementException nsee) {
+        }
     }
 
     public String getElementXpath() {
