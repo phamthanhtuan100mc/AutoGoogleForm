@@ -8,11 +8,13 @@ import core.wrapper.ElementWrapper;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class Question extends ElementWrapper {
 
-    private String _locatorTextarea = "//input[@type='text']";
+    private final static String _locatorShortAnswer = "//input[@type='text']";
+    private final static String _locatorTextarea = "//textarea";
     private FillResultBehavior fillResultBehavior;
 
     public Question(WebElement element) {
@@ -33,12 +35,11 @@ public abstract class Question extends ElementWrapper {
 
     public static QuestionType identifyQuestion(ElementWrapper element) {
         Question question;
-        long noTimeout = 0;
 
-        question = new ShortAnswerQuestion(element.getElementXpath() + "//input[@type='text']");
+        question = new ShortAnswerQuestion(element.getElementXpath() + _locatorShortAnswer);
 
         if (question.getElement() == null) {
-            question = new ParagraphQuestion(element.getElementXpath() + "//textarea");
+            question = new ParagraphQuestion(element.getElementXpath() + _locatorTextarea);
 
             if (question.getElement() == null) {
                 return QuestionType.NULL;
@@ -52,6 +53,8 @@ public abstract class Question extends ElementWrapper {
 
     public static List<Question> identifyQuestionList(List<ElementWrapper> elementList) {
         List<Question> questionList = new ArrayList<>();
+        HashMap<QuestionType, String> questionSet = new HashMap<QuestionType, String>();
+
         for (ElementWrapper element: elementList) {
             questionList.add(
                     QuestionFactory.getSpecificQuestion(
