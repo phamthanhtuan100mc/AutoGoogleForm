@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class Question extends ElementWrapper {
 
@@ -33,34 +34,31 @@ public abstract class Question extends ElementWrapper {
         fillResultBehavior = behavior;
     }
 
-    public static QuestionType identifyQuestion(ElementWrapper element) {
-        Question question;
+    public static Map<QuestionType, String> identifyQuestion(ElementWrapper element) {
+        Map<QuestionType, String> questionSet = new HashMap<>();
 
-        question = new ShortAnswerQuestion(element.getElementXpath() + _locatorShortAnswer);
-
-        if (question.getElement() == null) {
-            question = new ParagraphQuestion(element.getElementXpath() + _locatorTextarea);
-
-            if (question.getElement() == null) {
-                return QuestionType.NULL;
-            } else {
-                return QuestionType.PARAGRAPH;
-            }
-        } else {
-            return QuestionType.SHORT_ANSWER;
+        if (new ShortAnswerQuestion(element.getElementXpath() + _locatorShortAnswer).getElement() != null) {
+            questionSet.put(QuestionType.SHORT_ANSWER, _locatorShortAnswer);
+        } else if (new ParagraphQuestion(element.getElementXpath() + _locatorTextarea).getElement() != null) {
+            questionSet.put(QuestionType.PARAGRAPH, _locatorTextarea);
         }
+
+        return questionSet;
     }
 
     public static List<Question> identifyQuestionList(List<ElementWrapper> elementList) {
         List<Question> questionList = new ArrayList<>();
-        HashMap<QuestionType, String> questionSet = new HashMap<QuestionType, String>();
+        Map<QuestionType, String> questionSet;
+        QuestionType type;
+        String locator;
 
         for (ElementWrapper element: elementList) {
+            questionSet = identifyQuestion(element);
+            type = questionSet.keySet().iterator().next();
+            locator = questionSet.get(questionSet.keySet().iterator().next());
+
             questionList.add(
-                    QuestionFactory.getSpecificQuestion(
-                            identifyQuestion(element),
-                            element.getElementXpath()
-                    )
+                    QuestionFactory.getSpecificQuestion(type, locator)
             );
         }
         return questionList;
