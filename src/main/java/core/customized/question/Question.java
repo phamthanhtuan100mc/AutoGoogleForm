@@ -1,5 +1,6 @@
 package core.customized.question;
 
+import core.customized.QuestionTypeWithLocator;
 import core.customized.question.item.ParagraphQuestion;
 import core.customized.question.item.ShortAnswerQuestion;
 import core.factory.QuestionFactory;
@@ -34,13 +35,13 @@ public abstract class Question extends ElementWrapper {
         fillResultBehavior = behavior;
     }
 
-    public static Map<QuestionType, String> identifyQuestion(ElementWrapper element) {
-        Map<QuestionType, String> questionSet = new HashMap<>();
+    public static QuestionTypeWithLocator identifyQuestion(ElementWrapper element) {
+        QuestionTypeWithLocator questionSet = new QuestionTypeWithLocator();
 
         if (new ShortAnswerQuestion(element.getElementXpath() + _locatorShortAnswer).getElement() != null) {
-            questionSet.put(QuestionType.SHORT_ANSWER, _locatorShortAnswer);
+            questionSet.set(QuestionType.SHORT_ANSWER, _locatorShortAnswer);
         } else if (new ParagraphQuestion(element.getElementXpath() + _locatorTextarea).getElement() != null) {
-            questionSet.put(QuestionType.PARAGRAPH, _locatorTextarea);
+            questionSet.set(QuestionType.PARAGRAPH, _locatorTextarea);
         }
 
         return questionSet;
@@ -48,17 +49,13 @@ public abstract class Question extends ElementWrapper {
 
     public static List<Question> identifyQuestionList(List<ElementWrapper> elementList) {
         List<Question> questionList = new ArrayList<>();
-        Map<QuestionType, String> questionSet;
-        QuestionType type;
-        String locator;
+        QuestionTypeWithLocator questionSet;
 
         for (ElementWrapper element: elementList) {
             questionSet = identifyQuestion(element);
-            type = questionSet.keySet().iterator().next();
-            locator = questionSet.get(questionSet.keySet().iterator().next());
 
             questionList.add(
-                    QuestionFactory.getSpecificQuestion(type, locator)
+                    QuestionFactory.getSpecificQuestion(questionSet.getQuestionType(), questionSet.getLocator())
             );
         }
         return questionList;
