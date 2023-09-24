@@ -1,8 +1,9 @@
 package core.wrapper;
 
 import core.util.Constant;
-import core.util.Log;
 import core.util.StopWatch;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +15,7 @@ import java.util.List;
 import core.util.Timer;
 
 public class ElementWrapper {
+    private static final Logger log = LogManager.getLogger(ElementWrapper.class);
     private String _xpath;
     private final int _elementTimeout = Constant.WAIT_TIMEOUT; //In second
     private By _by;
@@ -36,11 +38,7 @@ public class ElementWrapper {
 
         this._xpath = locator;
         this._by = By.xpath(this._xpath);
-        try {
-            this._element = getElement();
-        } catch (NoSuchElementException nsee) {
-            Log.ERROR(nsee);
-        }
+        this._element = getElement();
     }
 
     public String getElementXpath() {
@@ -51,7 +49,8 @@ public class ElementWrapper {
         try {
             return driver.findElement(this._by);
         } catch (NoSuchElementException nsee) {
-            Log.ERROR(nsee);
+            log.error(nsee.getMessage());
+//            throw new RuntimeException(nsee);
             return null;
         }
     }
@@ -64,7 +63,8 @@ public class ElementWrapper {
                 elementList.add(new ElementWrapper(this._xpath + "[%d]", i));
             }
         } catch (Exception e) {
-            Log.ERROR(e);
+            log.error(e.getMessage());
+//            throw new RuntimeException(e);
         }
         return elementList;
     }
@@ -74,7 +74,8 @@ public class ElementWrapper {
             new WebDriverWait(this.driver, Duration.ofSeconds(timeOut))
                     .until(ExpectedConditions.visibilityOfElementLocated(this._by));
         } catch (Exception e) {
-            Log.ERROR(e);
+            log.error(e.getMessage());
+//            throw new RuntimeException(e);
         }
     }
 
@@ -87,7 +88,8 @@ public class ElementWrapper {
         try {
             this.getElement().clear();
         } catch (Exception e) {
-            Log.ERROR(e);
+            log.error(e.getMessage());
+//            throw new RuntimeException(e);
         }
     }
 
@@ -100,7 +102,8 @@ public class ElementWrapper {
         try {
             this.getElement().sendKeys(value);
         } catch (Exception e) {
-            Log.ERROR(e);
+            log.error(e.getMessage());
+//            throw new RuntimeException(e);
         }
     }
 
@@ -126,7 +129,8 @@ public class ElementWrapper {
             try {
                 isDisplay = this.getElement().isDisplayed();
             } catch (NoSuchElementException | StaleElementReferenceException | NullPointerException e) {
-                Log.ERROR(e);
+                log.error(e.getMessage());
+//            throw new RuntimeException(e);
             }
             Timer.sleep(500);
         }

@@ -1,7 +1,8 @@
 package core.wrapper;
 
 import core.factory.WebDriverFactory;
-import core.util.Log;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class DriverWrapper extends WebDriverFactory {
-
+    private static final Logger log = LogManager.getLogger(DriverWrapper.class);
     private static DriverWrapper instance = null;
     private static final long pageTimeout = 30;
 
@@ -27,7 +28,7 @@ public class DriverWrapper extends WebDriverFactory {
             driver.get().quit();
             driver.remove();
         } catch (Exception e) {
-            Log.ERROR(e);
+            log.error(e.getMessage());
         }
     }
 
@@ -35,7 +36,7 @@ public class DriverWrapper extends WebDriverFactory {
         try {
             driver.get().switchTo().newWindow(WindowType.TAB);
         } catch (Exception e) {
-            Log.ERROR(e);
+            log.error(e.getMessage());
         }
     }
 
@@ -43,7 +44,7 @@ public class DriverWrapper extends WebDriverFactory {
         try {
             driver.get().get(url);
         } catch (Exception e) {
-            Log.ERROR(e);
+            log.error(e.getMessage());
         }
     }
 
@@ -51,6 +52,7 @@ public class DriverWrapper extends WebDriverFactory {
 //        try {
 //            driver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(timeOut));
 //        } catch (Exception e) {
+//              log.error(e.getMessage());
 //            throw new RuntimeException(e);
 //        }
 //    }
@@ -64,7 +66,7 @@ public class DriverWrapper extends WebDriverFactory {
             WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
             wait.until(webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
         } catch (Exception e) {
-            Log.ERROR(e);
+            log.error(e.getMessage());
         }
     }
 
