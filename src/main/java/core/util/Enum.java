@@ -14,4 +14,9 @@ public class Enum {
         TIME,
         NULL
     }
+
+    public enum ItemType {
+        FOLDER,
+        FILE
+    }
 }
