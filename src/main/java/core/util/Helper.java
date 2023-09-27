@@ -15,9 +15,11 @@ public class Helper {
 
         switch (destinationType) {
             case FILE:
-                
+                // delete last File separator when directory is file path
+                filePath = filePath.substring(0, filePath.lastIndexOf(File.separator));
                 break;
             case FOLDER:
+                // do nothing when directory is folder path
                 break;
         }
 
