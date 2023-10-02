@@ -15,7 +15,6 @@ public class HomePage extends BasePage {
     private Form formList = new Form(this._formList);
 
     // Methods
-
     public List<Question> getQuestionList() {
         return formList.getAllQuestion();
     }

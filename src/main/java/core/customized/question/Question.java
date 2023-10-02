@@ -35,27 +35,36 @@ public abstract class Question extends ElementWrapper {
         fillResultBehavior = behavior;
     }
 
-    public static QuestionTypeWithLocator identifyQuestion(ElementWrapper element) {
-        QuestionTypeWithLocator questionSet = new QuestionTypeWithLocator();
+    public static QuestionType identifyQuestion(ElementWrapper element) {
+        QuestionType questionType = QuestionType.NULL;
 
+        // locator contains Xpath = //input[@type='text'] including:
+        // Short Answer Question
+        // Time Question
         if (new ShortAnswerQuestion(element.getElementXpath() + _locatorShortAnswer).getElement() != null) {
-            questionSet.set(QuestionType.SHORT_ANSWER, _locatorShortAnswer);
+            int count = new ShortAnswerQuestion(element.getElementXpath() + _locatorShortAnswer).getElementList().size();
+            if (count == 2) {
+                questionType = QuestionType.TIME;
+            } else {
+                questionType = QuestionType.SHORT_ANSWER;
+            }
         } else if (new ParagraphQuestion(element.getElementXpath() + _locatorTextarea).getElement() != null) {
-            questionSet.set(QuestionType.PARAGRAPH, _locatorTextarea);
+            questionType = QuestionType.PARAGRAPH;
         }
 
-        return questionSet;
+        System.out.println(questionType);
+        return questionType;
     }
 
     public static List<Question> identifyQuestionList(List<ElementWrapper> elementList) {
         List<Question> questionList = new ArrayList<>();
-        QuestionTypeWithLocator questionSet;
+        QuestionType QuestionType;
 
         for (ElementWrapper element: elementList) {
-            questionSet = identifyQuestion(element);
+            QuestionType = identifyQuestion(element);
 
             questionList.add(
-                    QuestionFactory.getSpecificQuestion(questionSet.getQuestionType(), questionSet.getLocator())
+                    QuestionFactory.getSpecificQuestion(QuestionType, element.getElement())
             );
         }
         return questionList;

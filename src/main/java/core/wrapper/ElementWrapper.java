@@ -49,7 +49,7 @@ public class ElementWrapper {
         try {
             return driver.findElement(this._by);
         } catch (NoSuchElementException nsee) {
-            log.error(nsee.getMessage());
+//            log.error(nsee.getMessage());
 //            throw new RuntimeException(nsee);
             return null;
         }
