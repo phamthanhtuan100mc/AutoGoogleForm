@@ -30,7 +30,7 @@ public class QuestionFactory {
                     question = new LinearScaleQuestion(element);
                     break;
                 case MULTIPLE_CHOICE:
-                    question = new MultipleChoiseQuestion(element);
+                    question = new MultipleChoiceQuestion(element);
                     break;
                 case MULTIPLE_CHOICE_GRID:
                     question = new MultipleChoiceGridQuestion(element);
@@ -73,7 +73,7 @@ public class QuestionFactory {
                     question = new LinearScaleQuestion(locator, args);
                     break;
                 case MULTIPLE_CHOICE:
-                    question = new MultipleChoiseQuestion(locator, args);
+                    question = new MultipleChoiceQuestion(locator, args);
                     break;
                 case MULTIPLE_CHOICE_GRID:
                     question = new MultipleChoiceGridQuestion(locator, args);

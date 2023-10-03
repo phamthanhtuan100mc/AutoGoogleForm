@@ -48,7 +48,7 @@ public class ElementWrapper {
     public WebElement getElement() {
         try {
             return driver.findElement(this._by);
-        } catch (NoSuchElementException nsee) {
+        } catch (NoSuchElementException | InvalidSelectorException e) {
 //            log.error(nsee.getMessage());
 //            throw new RuntimeException(nsee);
             return null;

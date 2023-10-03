@@ -6,6 +6,10 @@ import org.openqa.selenium.WebElement;
 
 public class TimeQuestion extends Question {
 
+    /*
+     * Need handle AM/PM for english version
+     */
+
     public TimeQuestion(WebElement element) {
         super(element);
         setFillResultBehavior(new FillResultTime());
