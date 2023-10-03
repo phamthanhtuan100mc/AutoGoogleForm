@@ -7,6 +7,7 @@ public class FillResultDropdown implements FillResultBehavior {
     @Override
     public void fillResult() {
         // do something
+        System.out.println("Test fill result for dropdown question");
     }
 
 }

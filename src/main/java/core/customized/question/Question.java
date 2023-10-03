@@ -1,6 +1,5 @@
 package core.customized.question;
 
-import core.customized.QuestionTypeWithLocator;
 import core.customized.question.item.ParagraphQuestion;
 import core.customized.question.item.ShortAnswerQuestion;
 import core.factory.QuestionFactory;
@@ -9,9 +8,7 @@ import core.wrapper.ElementWrapper;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public abstract class Question extends ElementWrapper {
 
@@ -27,12 +24,12 @@ public abstract class Question extends ElementWrapper {
         super(locator, args);
     }
 
-    public void performFillResult() {
-        fillResultBehavior.fillResult();
-    }
-
     public void setFillResultBehavior(FillResultBehavior behavior) {
         fillResultBehavior = behavior;
+    }
+
+    public void performFillResult() {
+        fillResultBehavior.fillResult();
     }
 
     public static QuestionType identifyQuestion(ElementWrapper element) {
@@ -52,6 +49,7 @@ public abstract class Question extends ElementWrapper {
             questionType = QuestionType.PARAGRAPH;
         }
 
+        // Test
         System.out.println(questionType);
         return questionType;
     }
