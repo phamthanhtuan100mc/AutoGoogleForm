@@ -14,7 +14,7 @@ public abstract class Question extends ElementWrapper {
     private final static String _locatorCheckboxGrid = "...";
     private final static String _locatorCheckbox = "...";
     private final static String _locatorDate = "//input[@type='date']";
-    private final static String _locatorDropdown = "...";
+    private final static String _locatorDropdown = "//div[@role='listbox']";
     private final static String _locatorLinearScale = "...";
     private final static String _locatorMultipleChoiceGrid = "...";
     private final static String _locatorMultipleChoice = "...";
