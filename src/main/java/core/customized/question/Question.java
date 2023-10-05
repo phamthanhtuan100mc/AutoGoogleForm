@@ -20,6 +20,7 @@ public abstract class Question extends ElementWrapper {
     private final static String _locatorMultipleChoice = "...";
     private final static String _locatorParagraph = "//textarea";
     private final static String _locatorShortAnswer = "//input[@type='text']";
+    private final static String _locatorRadioGroup = "//div[@role='radiogroup']";
     private FillResultBehavior fillResultBehavior;
 
     public Question(WebElement element) {

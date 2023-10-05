@@ -1,4 +1,4 @@
-package core.customized.question.item.behavior;
+package core.customized.question.item.behavior.fill_result;
 
 import core.customized.question.FillResultBehavior;
 

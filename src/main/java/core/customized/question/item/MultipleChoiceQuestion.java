@@ -1,7 +1,7 @@
 package core.customized.question.item;
 
 import core.customized.question.Question;
-import core.customized.question.item.behavior.FillResultMultipleChoice;
+import core.customized.question.item.behavior.fill_result.FillResultMultipleChoice;
 import org.openqa.selenium.WebElement;
 
 public class MultipleChoiceQuestion extends Question {

@@ -1,7 +1,7 @@
 package core.customized.question.item;
 
 import core.customized.question.Question;
-import core.customized.question.item.behavior.FillResultTime;
+import core.customized.question.item.behavior.fill_result.FillResultTime;
 import org.openqa.selenium.WebElement;
 
 public class TimeQuestion extends Question {

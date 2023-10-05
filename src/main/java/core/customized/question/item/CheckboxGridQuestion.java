@@ -1,7 +1,7 @@
 package core.customized.question.item;
 
 import core.customized.question.Question;
-import core.customized.question.item.behavior.FillResultCheckboxGrid;
+import core.customized.question.item.behavior.fill_result.FillResultCheckboxGrid;
 import org.openqa.selenium.WebElement;
 
 public class CheckboxGridQuestion extends Question {
