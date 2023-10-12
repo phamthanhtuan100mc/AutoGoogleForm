@@ -16,8 +16,8 @@ public abstract class Question extends ElementWrapper {
 
     private final static String _locatorRadio = "//div[@role='radio']";
     private final static String _locatorLSQ_MCGQ = "/parent::div/parent::div/preceding-sibling::div"; // Linear Scale Question - Multiple Choice Grid Question
-    private final static String _locatorCheckboxGrid = "...";
-    private final static String _locatorCheckbox = "...";
+    private final static String _locatorCheckboxGrid = "/parent::div/parent::div/parent::div[@aria-hidden=\"true\"]";
+    private final static String _locatorCheckboxGroup = "//div[@role='checkbox']";
     private final static String _locatorDate = "//input[@type='date']";
     private final static String _locatorDropdown = "//div[@role='listbox']";
     private final static String _locatorMultipleChoiceGrid = "/parent::div/parent::div/parent::div/parent::div[@aria-hidden=\"true\"]";
@@ -52,11 +52,12 @@ public abstract class Question extends ElementWrapper {
     public static QuestionType identifyQuestion(ElementWrapper element) {
         QuestionType questionType = QuestionType.NULL;
 
-        if (new ElementWrapper(element.getElementXpath() + _locatorCheckboxGrid).getElement() != null) {
-            questionType = QuestionType.CHECKBOX_GRID;
-
-        } else if (new ElementWrapper(element.getElementXpath() + _locatorCheckbox).getElement() != null) {
-            questionType = QuestionType.CHECKBOX;
+        if (new ElementWrapper(element.getElementXpath() + _locatorCheckboxGroup).getElement() != null) {
+            if (new ElementWrapper(element.getElementXpath() + _locatorCheckboxGroup + _locatorCheckboxGrid).getElement() != null) {
+                questionType = QuestionType.CHECKBOX_GRID;
+            } else {
+                questionType = QuestionType.CHECKBOX;
+            }
 
         } else if (new ElementWrapper(element.getElementXpath() + _locatorDate).getElement() != null) {
             questionType = QuestionType.DATE;
