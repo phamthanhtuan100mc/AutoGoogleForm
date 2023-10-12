@@ -11,17 +11,19 @@ import java.util.List;
 
 public abstract class Question extends ElementWrapper {
 
+    private boolean requireStatus = false;
+    private FillResultBehavior fillResultBehavior;
+
+    private final static String _locatorRadio = "//div[@role='radio']";
+    private final static String _locatorLSQ_MCGQ = "/parent::div/parent::div/preceding-sibling::div"; // Linear Scale Question - Multiple Choice Grid Question
     private final static String _locatorCheckboxGrid = "...";
     private final static String _locatorCheckbox = "...";
     private final static String _locatorDate = "//input[@type='date']";
     private final static String _locatorDropdown = "//div[@role='listbox']";
-    private final static String _locatorLinearScale = "...";
-    private final static String _locatorMultipleChoiceGrid = "...";
-    private final static String _locatorMultipleChoice = "...";
+    private final static String _locatorMultipleChoiceGrid = "/parent::div/parent::div/parent::div/parent::div[@aria-hidden=\"true\"]";
     private final static String _locatorParagraph = "//textarea";
     private final static String _locatorShortAnswer = "//input[@type='text']";
     private final static String _locatorRadioGroup = "//div[@role='radiogroup']";
-    private FillResultBehavior fillResultBehavior;
 
     public Question(WebElement element) {
         super(element);
@@ -35,6 +37,14 @@ public abstract class Question extends ElementWrapper {
         fillResultBehavior = behavior;
     }
 
+    public boolean getRequireStatus() {
+        return this.requireStatus;
+    }
+
+    public void setRequireStatus(boolean status) {
+        this.requireStatus = status;
+    }
+
     public void performFillResult() {
         fillResultBehavior.fillResult();
     }
@@ -42,38 +52,39 @@ public abstract class Question extends ElementWrapper {
     public static QuestionType identifyQuestion(ElementWrapper element) {
         QuestionType questionType = QuestionType.NULL;
 
-
-
-        if (new CheckboxGridQuestion(element.getElementXpath() + _locatorCheckboxGrid).getElement() != null) {
+        if (new ElementWrapper(element.getElementXpath() + _locatorCheckboxGrid).getElement() != null) {
             questionType = QuestionType.CHECKBOX_GRID;
 
-        } else if (new CheckboxQuestion(element.getElementXpath() + _locatorCheckbox).getElement() != null) {
+        } else if (new ElementWrapper(element.getElementXpath() + _locatorCheckbox).getElement() != null) {
             questionType = QuestionType.CHECKBOX;
 
-        } else if (new DateQuestion(element.getElementXpath() + _locatorDate).getElement() != null) {
+        } else if (new ElementWrapper(element.getElementXpath() + _locatorDate).getElement() != null) {
             questionType = QuestionType.DATE;
 
-        } else if (new DropdownQuestion(element.getElementXpath() + _locatorDropdown).getElement() != null) {
+        } else if (new ElementWrapper(element.getElementXpath() + _locatorDropdown).getElement() != null) {
             questionType = QuestionType.DROP_DOWN;
 
-        } else if (new LinearScaleQuestion(element.getElementXpath() + _locatorLinearScale).getElement() != null) {
-            questionType = QuestionType.LINEAR_SCALE;
+        } else if (new ElementWrapper(element.getElementXpath() + _locatorRadio).getElement() != null) {
 
-        } else if (new MultipleChoiceGridQuestion(element.getElementXpath() + _locatorMultipleChoiceGrid).getElement() != null) {
-            questionType = QuestionType.MULTIPLE_CHOICE_GRID;
+            if (new ElementWrapper(element.getElementXpath() + _locatorRadio + _locatorLSQ_MCGQ).getElement() != null) {
+                if (new ElementWrapper(element.getElementXpath() + _locatorRadio + _locatorMultipleChoiceGrid).getElement() != null) {
+                    questionType = QuestionType.MULTIPLE_CHOICE_GRID;
+                } else {
+                    questionType = QuestionType.LINEAR_SCALE;
+                }
+            } else {
+                questionType = QuestionType.MULTIPLE_CHOICE;
+            }
 
-        } else if (new MultipleChoiceQuestion(element.getElementXpath() + _locatorMultipleChoice).getElement() != null) {
-            questionType = QuestionType.MULTIPLE_CHOICE_GRID;
-
-        } else if (new ParagraphQuestion(element.getElementXpath() + _locatorParagraph).getElement() != null) {
+        } else if (new ElementWrapper(element.getElementXpath() + _locatorParagraph).getElement() != null) {
             questionType = QuestionType.PARAGRAPH;
 
         /* locator contains Xpath = //input[@type='text'] including:
          * Short Answer Question
          * Time Question
          */
-        } else if (new ShortAnswerQuestion(element.getElementXpath() + _locatorShortAnswer).getElement() != null) {
-            int count = new ShortAnswerQuestion(element.getElementXpath() + _locatorShortAnswer).getElementList().size();
+        } else if (new ElementWrapper(element.getElementXpath() + _locatorShortAnswer).getElement() != null) {
+            int count = new ElementWrapper(element.getElementXpath() + _locatorShortAnswer).getElementList().size();
             if (count == 2) {
                 questionType = QuestionType.TIME;
             } else {
