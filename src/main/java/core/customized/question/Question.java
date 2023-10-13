@@ -4,6 +4,7 @@ import core.customized.question.item.*;
 import core.factory.QuestionFactory;
 import core.util.Enum.QuestionType;
 import core.wrapper.ElementWrapper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -51,6 +52,9 @@ public abstract class Question extends ElementWrapper {
     }
 
     public void identifyRequireStatus() {
+        if (this.findElement(By.xpath(_locatorRequireStatus)).getSize() != null) {
+            requireStatus = true;
+        }
         if (new ElementWrapper(this.getElementXpath() + _locatorRequireStatus).getElement() != null) {
             requireStatus = true;
         }
