@@ -45,9 +45,17 @@ public class ElementWrapper {
         return this._xpath;
     }
 
+    public WebElement findElement(By by) {
+        return driver.findElement(by);
+    }
+
+    public List<WebElement> findElements(By by) {
+        return driver.findElements(by);
+    }
+
     public WebElement getElement() {
         try {
-            return driver.findElement(this._by);
+            return findElement(this._by);
         } catch (NoSuchElementException | InvalidSelectorException e) {
 //            log.error(nsee.getMessage());
 //            throw new RuntimeException(nsee);
@@ -58,7 +66,7 @@ public class ElementWrapper {
     public List<ElementWrapper> getElementList() {
         List<ElementWrapper> elementList = new ArrayList<>();
         try {
-            int count = driver.findElements(this._by).size();
+            int count = findElements(this._by).size();
             for (int i = 1; i <= count; i++) {
                 elementList.add(new ElementWrapper(this._xpath + "[%d]", i));
             }
