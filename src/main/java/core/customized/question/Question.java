@@ -23,7 +23,7 @@ public abstract class Question extends ElementWrapper {
     private final static String _locatorMultipleChoiceGrid = "/parent::div/parent::div/parent::div/parent::div[@aria-hidden=\"true\"]";
     private final static String _locatorParagraph = "//textarea";
     private final static String _locatorShortAnswer = "//input[@type='text']";
-    private final static String _locatorRadioGroup = "//div[@role='radiogroup']";
+    private final static String _locatorRequireStatus = "//span[text()=' *']";
 
     public Question(WebElement element) {
         super(element);
@@ -31,6 +31,7 @@ public abstract class Question extends ElementWrapper {
 
     public Question(String locator, Object... args) {
         super(locator, args);
+        identifyRequireStatus();
     }
 
     public void setFillResultBehavior(FillResultBehavior behavior) {
@@ -47,6 +48,12 @@ public abstract class Question extends ElementWrapper {
 
     public void performFillResult() {
         fillResultBehavior.fillResult();
+    }
+
+    public void identifyRequireStatus() {
+        if (new ElementWrapper(this.getElementXpath() + _locatorRequireStatus).getElement() != null) {
+            requireStatus = true;
+        }
     }
 
     public static QuestionType identifyQuestion(ElementWrapper element) {
@@ -106,7 +113,7 @@ public abstract class Question extends ElementWrapper {
             QuestionType = identifyQuestion(element);
 
             questionList.add(
-                    QuestionFactory.getSpecificQuestion(QuestionType, element.getElement())
+                    QuestionFactory.getSpecificQuestion(QuestionType, element.getElementXpath())
             );
         }
         return questionList;

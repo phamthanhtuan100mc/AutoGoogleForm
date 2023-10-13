@@ -25,8 +25,8 @@ public class DriverWrapper extends WebDriverFactory {
 
     public static void closeBrowser() {
         try {
-            driver.get().quit();
-            driver.remove();
+            getDriver().quit();
+            drivers.remove();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -34,7 +34,7 @@ public class DriverWrapper extends WebDriverFactory {
 
     public static void switchToNewTab() {
         try {
-            driver.get().switchTo().newWindow(WindowType.TAB);
+            getDriver().switchTo().newWindow(WindowType.TAB);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -42,7 +42,7 @@ public class DriverWrapper extends WebDriverFactory {
 
     public static void get(String url) {
         try {
-            driver.get().get(url);
+            getDriver().get(url);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -63,7 +63,7 @@ public class DriverWrapper extends WebDriverFactory {
 
     public static void waitForPageLoad() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(pageTimeout));
             wait.until(webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
         } catch (Exception e) {
             log.error(e.getMessage());

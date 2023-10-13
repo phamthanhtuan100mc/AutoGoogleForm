@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 
 public class WebDriverFactory {
 
-    protected static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    protected static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
     public static void setWebDriver(String browser, boolean remote) {
         if (remote) {
@@ -34,11 +34,11 @@ public class WebDriverFactory {
             System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-mac-arm64/chromedriver");
         }
 //        ChromeDriverService service = new ChromeDriverService.Builder().build();
-        driver.set(new ChromeDriver());
+        drivers.set(new ChromeDriver());
     }
 
     public static WebDriver getDriver() {
-        return driver.get();
+        return drivers.get();
     }
 
     public static void setDriver(String browser, boolean remote) {
