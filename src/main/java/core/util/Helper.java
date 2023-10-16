@@ -4,7 +4,15 @@ import java.io.File;
 import core.util.Enum.ItemType;
 
 public class Helper {
-    public static String createFilePath(ItemType destinationType, String... args) {
+
+    /**
+     * Returns a path to file or directory which having file separator depend on OS: Windows, macOS, Linux
+     *
+     * @param destinationType determine the path destination is file or directory
+     * @param args list name of folder to destination file or directory
+     * @return the path to destination file or directory
+     */
+    public static String createFilePathByOS(ItemType destinationType, String... args) {
         String filePath = "";
 
         if (args.length > 0 && args != null) {
