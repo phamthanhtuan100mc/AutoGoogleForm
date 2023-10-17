@@ -1,6 +1,6 @@
 package testcase;
 
-import core.util.Enum;
+import core.util.Enum.OSType;
 import core.util.Helper;
 import core.wrapper.DriverWrapper;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +15,7 @@ public abstract class BaseTest {
     public void setupTest() {
 
         logger.info("Exit all running chromedriver before test");
-        Helper.excCommand(Enum.OSType.WINDOWS, "taskkill /f /im chromedriver.exe");
+        Helper.excCommand(OSType.WINDOWS, "taskkill /f /im chromedriver.exe");
 
         logger.info("Setup webdriver");
         DriverWrapper.setDriver("chrome", false);
