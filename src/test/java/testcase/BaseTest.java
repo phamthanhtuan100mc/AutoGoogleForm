@@ -1,5 +1,7 @@
 package testcase;
 
+import core.util.Enum;
+import core.util.Helper;
 import core.wrapper.DriverWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +13,10 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void setupTest() {
+
+        logger.info("Exit all running chromedriver before test");
+        Helper.excCommand(Enum.OSType.WINDOWS, "taskkill /f /im chromedriver.exe");
+
         logger.info("Setup webdriver");
         DriverWrapper.setDriver("chrome", false);
 //        DriverWrapper.setPageLoadTimeOut();

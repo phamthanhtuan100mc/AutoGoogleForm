@@ -19,4 +19,12 @@ public class Enum {
         FOLDER,
         FILE
     }
+
+    public enum OSType {
+        WINDOWS,
+        LINUX,
+        MACOSX,
+        AIX,
+        UNKNOWN
+    }
 }

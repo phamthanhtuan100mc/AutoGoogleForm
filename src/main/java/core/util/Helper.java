@@ -1,9 +1,18 @@
 package core.util;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import core.util.Enum.ItemType;
+import core.util.Enum.OSType;
+import core.wrapper.ElementWrapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Helper {
+    private static final Logger log = LogManager.getLogger(Helper.class);
 
     /**
      * Returns a path to file or directory which having file separator depend on OS: Windows, macOS, Linux
@@ -32,5 +41,31 @@ public class Helper {
         }
 
         return filePath;
+    }
+
+    public static void excCommand(OSType osType, String command) {
+        try {
+            switch (osType) {
+                case WINDOWS:
+                    ProcessBuilder builder = new ProcessBuilder(
+                            "cmd.exe", "/c", command);
+                    builder.redirectErrorStream(true);
+                    Process p = builder.start();
+                    BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    String line;
+                    while (true) {
+                        line = r.readLine();
+                        if (line == null) {
+                            break;
+                        }
+                        log.info("Command result - " + line);
+                    }
+                case UNKNOWN: default:
+                    log.error("Operation System is not recognized");
+            }
+        } catch (IOException ioe) {
+            log.error("Could not execute command");
+            log.error(ioe);
+        }
     }
 }
