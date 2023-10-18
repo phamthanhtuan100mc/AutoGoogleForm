@@ -2,7 +2,7 @@ package testcase;
 
 import core.util.Enum.OSType;
 import core.util.Helper;
-import core.wrapper.DriverWrapper;
+import core.wrapper.driver.DriverWrapper;
 import core.wrapper.driver.DriverProperty;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

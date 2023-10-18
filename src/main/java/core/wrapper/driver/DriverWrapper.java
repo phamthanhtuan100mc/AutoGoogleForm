@@ -1,4 +1,4 @@
-package core.wrapper;
+package core.wrapper.driver;
 
 import core.factory.WebDriverFactory;
 import org.apache.logging.log4j.LogManager;

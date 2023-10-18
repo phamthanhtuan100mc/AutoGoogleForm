@@ -1,7 +1,7 @@
 package core.page_object;
 
 import core.util.Constant;
-import core.wrapper.DriverWrapper;
+import core.wrapper.driver.DriverWrapper;
 import core.wrapper.ElementWrapper;
 
 public abstract class BasePage {
