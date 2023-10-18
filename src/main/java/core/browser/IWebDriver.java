@@ -1,19 +1,16 @@
 package core.browser;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import core.wrapper.driver.DriverProperty;
 import org.openqa.selenium.WebDriver;
 
 public interface IWebDriver {
 
-    Logger logger = LogManager.getLogger();
-
     /**
      * Create web driver from driver property
      *
-     * @param property:DriverProperty
+     * @param property DriverProperty
      * @return WebDriver
      */
-//    WebDriver createWebDriver(DriverProperty property);
+    WebDriver createWebDriver(DriverProperty property);
 
 }

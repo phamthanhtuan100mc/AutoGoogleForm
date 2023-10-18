@@ -1,15 +1,22 @@
 package core.factory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import java.lang.reflect.Method;
+
+import core.wrapper.driver.DriverProperty;
 
 public class WebDriverFactory {
 
+    private static final Logger log = LogManager.getLogger(WebDriverFactory.class);
     protected static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
-    public static void setWebDriver(String browser, boolean remote) {
+    public static void createWebDriver(String browser, boolean remote) {
         if (remote) {
             switch (browser) {
                 case "chrome":
@@ -26,16 +33,16 @@ public class WebDriverFactory {
     }
 
     private static void setChromeDriver() {
-//        String osName = System.getProperty("os.name");
-//        WebDriverManager.chromedriver().setup();
+        String osName = System.getProperty("os.name");
+        WebDriverManager.chromedriver().setup();
 
         WebDriverManager.chromedriver().clearResolutionCache().setup();
-//        if (osName.startsWith("Windows")) {
-//            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-win64/chromedriver.exe");
-//        } else if (osName.startsWith("Mac")) {
-//            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-mac-arm64/chromedriver");
-//        }
-//        ChromeDriverService service = new ChromeDriverService.Builder().build();
+        if (osName.startsWith("Windows")) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-win64/chromedriver.exe");
+        } else if (osName.startsWith("Mac")) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/executables/chromedriver-mac-arm64/chromedriver");
+        }
+        ChromeDriverService service = new ChromeDriverService.Builder().build();
         drivers.set(new ChromeDriver());
     }
 
@@ -43,7 +50,26 @@ public class WebDriverFactory {
         return drivers.get();
     }
 
-    public static void setDriver(String browser, boolean remote) {
-        setWebDriver(browser, remote);
+    public static WebDriver setDriver(DriverProperty property) {
+
+
+        // Example of className:
+        // core.browser.chrome.LocalChromeDriver
+        String className = String.format("core.browser.%s.%s%sDriver",
+                property.getBrowser(),
+                property.getMode(), StringUtils.capitalize(property.getBrowser()));
+
+        try {
+            Class<?> clazz = Class.forName(className);
+            Method method = clazz.getMethod("createWebDriver", DriverProperty.class);
+            Object instance = clazz.newInstance();
+            WebDriver driver = (WebDriver) method.invoke(instance, property);
+            drivers.set(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error(e.getMessage());
+        }
+
+        return drivers.get();
     }
 }

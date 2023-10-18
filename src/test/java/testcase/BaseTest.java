@@ -3,6 +3,7 @@ package testcase;
 import core.util.Enum.OSType;
 import core.util.Helper;
 import core.wrapper.DriverWrapper;
+import core.wrapper.driver.DriverProperty;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterMethod;
@@ -18,7 +19,7 @@ public abstract class BaseTest {
         Helper.excCommand(OSType.WINDOWS, "taskkill /f /im chromedriver.exe");
 
         logger.info("Setup webdriver");
-        DriverWrapper.setDriver("chrome", false);
+        DriverWrapper.setDriver(new DriverProperty());
 //        DriverWrapper.setPageLoadTimeOut();
     }
 
