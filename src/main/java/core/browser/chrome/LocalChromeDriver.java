@@ -11,7 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class LocalChromeDriver implements IWebDriver {
 
     /**
-     * Create Chrome web driver from driver property
+     * Create local Chrome web driver from driver property
      *
      * @param property DriverProperty
      * @return WebDriver

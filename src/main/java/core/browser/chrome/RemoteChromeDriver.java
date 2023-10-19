@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class RemoteChromeDriver implements IWebDriver {
 
     /**
-     * Create web driver from driver property
+     * Create remote Chrome web driver from driver property
      *
      * @param property DriverProperty
      * @return WebDriver
