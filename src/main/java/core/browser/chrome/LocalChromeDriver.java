@@ -5,6 +5,8 @@ import core.wrapper.driver.DriverProperty;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class LocalChromeDriver implements IWebDriver {
 
@@ -17,6 +19,14 @@ public class LocalChromeDriver implements IWebDriver {
     @Override
     public WebDriver createWebDriver(DriverProperty property) {
         WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments(property.getArguments());
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+        options.merge(capabilities);
+
+        return new ChromeDriver(options);
     }
 }

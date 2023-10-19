@@ -1,14 +1,23 @@
 package core.wrapper.driver;
 
+import core.util.Enum.BrowserType;
+import core.util.Enum.ExecuteMode;
+
+import java.util.List;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
+
 /**
  * Selenium Webdriver properties.
  * Load data from file then convert to property object
  */
 public class DriverProperty {
-    private String browser = "chrome";
-    private String mode = "Remote";
+    private String browser = BrowserType.CHROME.toString();
+    private String mode = ExecuteMode.LOCAL.toString();
     private boolean isRemote = false;
-    private boolean headless = false;
+    private List<String> arguments = Arrays.asList("--headless=new");
+    private Map<String, String> capabilities = new HashMap<>();
 
     public String getBrowser() {
         return browser;
@@ -35,11 +44,11 @@ public class DriverProperty {
         setMode(isRemote == true ? "Remote" : "Local");
     }
 
-    public boolean isHeadless() {
-        return headless;
+    public List<String> getArguments() {
+        return arguments;
     }
 
-    public void setIsHeadless(boolean headless) {
-        this.headless = headless;
+    public void setArguments(List<String> arguments) {
+        this.arguments = arguments;
     }
 }

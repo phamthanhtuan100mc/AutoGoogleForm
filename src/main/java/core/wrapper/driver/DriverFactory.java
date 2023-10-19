@@ -63,6 +63,8 @@ public class DriverFactory {
 
             WebDriver driver = (WebDriver) method.invoke(instance, property);
             drivers.set(driver);
+            System.out.println("Test thread: ");
+            drivers.get();
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
