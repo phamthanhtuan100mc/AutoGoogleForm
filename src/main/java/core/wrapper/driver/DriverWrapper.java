@@ -1,6 +1,5 @@
 package core.wrapper.driver;
 
-import core.factory.WebDriverFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class DriverWrapper extends WebDriverFactory {
+public class DriverWrapper extends DriverFactory {
     private static final Logger log = LogManager.getLogger(DriverWrapper.class);
     private static DriverWrapper instance = null;
     private static final long pageTimeout = 30;

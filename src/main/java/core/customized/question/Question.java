@@ -1,7 +1,5 @@
 package core.customized.question;
 
-import core.customized.question.item.*;
-import core.factory.QuestionFactory;
 import core.util.Enum.QuestionType;
 import core.wrapper.ElementWrapper;
 import org.openqa.selenium.By;

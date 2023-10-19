@@ -1,6 +1,5 @@
-package core.factory;
+package core.customized.question;
 
-import core.customized.question.Question;
 import core.customized.question.item.*;
 import core.util.Enum.QuestionType;
 import org.apache.logging.log4j.LogManager;

@@ -1,4 +1,4 @@
-package core.factory;
+package core.wrapper.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.lang3.StringUtils;
@@ -9,11 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import java.lang.reflect.Method;
 
-import core.wrapper.driver.DriverProperty;
+public class DriverFactory {
 
-public class WebDriverFactory {
-
-    private static final Logger log = LogManager.getLogger(WebDriverFactory.class);
+    private static final Logger log = LogManager.getLogger(DriverFactory.class);
     protected static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
     public static void createWebDriver(String browser, boolean remote) {
@@ -50,26 +48,24 @@ public class WebDriverFactory {
         return drivers.get();
     }
 
-    public static WebDriver setDriver(DriverProperty property) {
-
-
+    public static void setDriver(DriverProperty property) {
         // Example of className:
         // core.browser.chrome.LocalChromeDriver
         String className = String.format("core.browser.%s.%s%sDriver",
                 property.getBrowser(),
                 property.getMode(), StringUtils.capitalize(property.getBrowser()));
 
+        // Using Java reflection technique
         try {
             Class<?> clazz = Class.forName(className);
             Method method = clazz.getMethod("createWebDriver", DriverProperty.class);
-            Object instance = clazz.newInstance();
+            Object instance = clazz.getDeclaredConstructor().newInstance();
+
             WebDriver driver = (WebDriver) method.invoke(instance, property);
             drivers.set(driver);
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
         }
-
-        return drivers.get();
     }
 }
