@@ -1,0 +1,19 @@
+{
+    "windows.chrome.local": {
+        "browser": "chrome",
+        "isRemote": false,
+        "arguments": [
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.chrome.local.headless": {
+        "browser": "chrome",
+        "isRemote": false,
+        "arguments": [
+            "--headless=new"
+        ],
+        "capabilities": {
+        }
+    }
+}
