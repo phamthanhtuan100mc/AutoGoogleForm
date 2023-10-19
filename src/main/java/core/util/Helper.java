@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import core.util.Enum.ItemType;
 import core.util.Enum.OSType;
 import core.wrapper.ElementWrapper;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -67,5 +68,13 @@ public class Helper {
             log.error("Could not execute command");
             log.error(ioe);
         }
+    }
+
+    /**
+     * Read file and return file content as String text
+     */
+    public static String readFile() {
+
+        return "";
     }
 }
