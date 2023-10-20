@@ -1,16 +1,17 @@
 package core.util;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import core.util.Enum.ItemType;
 import core.util.Enum.OSType;
-import core.wrapper.ElementWrapper;
-import org.apache.commons.lang3.StringUtils;
+import core.wrapper.driver.DriverProperty;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.json.Json;
 
 public class Helper {
     private static final Logger log = LogManager.getLogger(Helper.class);
@@ -71,10 +72,21 @@ public class Helper {
     }
 
     /**
-     * Read file and return file content as String text
+     * Read file setup in json and return driver config
      */
-    public static String readFile() {
+    public static DriverProperty loadBrowserSetting(String filePath, String runConfig) {
 
-        return "";
+        Gson gson = new Gson();
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(filePath));
+            JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+            JsonObject runConfigObject = jsonObject.getAsJsonObject(runConfig);
+            DriverProperty property = gson.fromJson(runConfigObject, DriverProperty.class);
+
+            return property;
+        } catch (IOException ioe) {
+            log.error(ioe.getMessage());
+            return null;
+        }
     }
 }
