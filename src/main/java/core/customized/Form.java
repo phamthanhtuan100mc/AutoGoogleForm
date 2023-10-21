@@ -1,7 +1,7 @@
 package core.customized;
 
 import core.customized.question.Question;
-import core.wrapper.ElementWrapper;
+import core.wrapper.element.ElementWrapper;
 
 import java.util.List;
 
