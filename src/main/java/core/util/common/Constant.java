@@ -1,4 +1,4 @@
-package core.util;
+package core.util.common;
 
 import org.openqa.selenium.WebDriver;
 

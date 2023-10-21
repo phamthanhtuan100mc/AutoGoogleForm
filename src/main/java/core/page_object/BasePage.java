@@ -1,6 +1,6 @@
 package core.page_object;
 
-import core.util.Constant;
+import core.util.common.Constant;
 import core.wrapper.driver.DriverWrapper;
 import core.wrapper.ElementWrapper;
 

@@ -1,6 +1,6 @@
 package core.wrapper;
 
-import core.util.Constant;
+import core.util.common.Constant;
 import core.util.StopWatch;
 import core.wrapper.driver.DriverWrapper;
 import org.apache.logging.log4j.LogManager;

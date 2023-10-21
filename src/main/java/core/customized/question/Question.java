@@ -1,6 +1,6 @@
 package core.customized.question;
 
-import core.util.Enum.QuestionType;
+import core.util.enums.QuestionType;
 import core.wrapper.ElementWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

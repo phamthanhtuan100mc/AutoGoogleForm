@@ -1,7 +1,7 @@
 package core.customized.question;
 
 import core.customized.question.item.*;
-import core.util.Enum.QuestionType;
+import core.util.enums.QuestionType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;

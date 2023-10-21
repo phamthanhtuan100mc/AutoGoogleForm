@@ -1,6 +1,6 @@
 package core.customized.old;
 
-import core.util.Enum.QuestionType;
+import core.util.enums.QuestionType;
 
 public class QuestionTypeWithLocator {
     private QuestionType questionType = QuestionType.NULL;

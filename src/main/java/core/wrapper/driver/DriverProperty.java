@@ -1,7 +1,7 @@
 package core.wrapper.driver;
 
-import core.util.Enum.BrowserType;
-import core.util.Enum.ExecuteMode;
+import core.util.enums.BrowserType;
+import core.util.enums.ExecuteMode;
 
 import java.util.List;
 import java.util.Arrays;
