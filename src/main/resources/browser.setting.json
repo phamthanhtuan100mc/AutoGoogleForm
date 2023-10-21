@@ -11,7 +11,8 @@
         "browser": "chrome",
         "isRemote": false,
         "arguments": [
-            "--headless=new"
+            "--headless=new",
+            "--disable-gpu"
         ],
         "capabilities": {
         }

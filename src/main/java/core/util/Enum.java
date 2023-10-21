@@ -36,7 +36,7 @@ public class Enum {
 
         private final String value;
 
-        private BrowserType(String value) {
+        BrowserType(String value) {
             this.value = value;
         }
 
@@ -51,7 +51,7 @@ public class Enum {
 
         private final String value;
 
-        private ExecuteMode(String value) {
+        ExecuteMode(String value) {
             this.value = value;
         }
 

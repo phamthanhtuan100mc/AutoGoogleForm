@@ -1,5 +1,6 @@
 package testcase;
 
+import core.util.Enum.ItemType;
 import core.util.Enum.OSType;
 import core.util.Helper;
 import core.wrapper.driver.DriverWrapper;
@@ -18,8 +19,12 @@ public abstract class BaseTest {
         logger.info("Exit all running chromedriver before test");
         Helper.excCommand(OSType.WINDOWS, "taskkill /f /im chromedriver.exe");
 
+        String filePath = Helper.createFilePathByOS(ItemType.FILE, "src", "main", "resources", "browser.setting.json");
+        String runConfig = "windows.chrome.local.headless";
+        DriverProperty property = Helper.loadBrowserSetting(filePath, runConfig);
+
         logger.info("Setup webdriver");
-        DriverWrapper.setDriver(new DriverProperty());
+        DriverWrapper.setDriver(property);
 //        DriverWrapper.setPageLoadTimeOut();
     }
 
