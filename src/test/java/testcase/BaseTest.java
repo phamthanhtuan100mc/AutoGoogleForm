@@ -12,6 +12,9 @@ import org.testng.annotations.BeforeMethod;
 
 public abstract class BaseTest {
     private static final Logger logger = LogManager.getLogger(BaseTest.class);
+    DriverProperty property;
+    String runConfig = "windows.chrome.local.headless";
+    String filePath = Helper.createFilePathByOS(ItemType.FILE, "src", "main", "resources", "browser.setting.json");
 
     @BeforeMethod
     public void setupTest() {
@@ -19,9 +22,8 @@ public abstract class BaseTest {
         logger.info("Exit all running chromedriver before test");
         Helper.excCommand(OSType.WINDOWS, "taskkill /f /im chromedriver.exe");
 
-        String filePath = Helper.createFilePathByOS(ItemType.FILE, "src", "main", "resources", "browser.setting.json");
-        String runConfig = "windows.chrome.local.headless";
-        DriverProperty property = Helper.loadBrowserSetting(filePath, runConfig);
+        logger.info("Read run browser config from file");
+        property = Helper.loadBrowserSetting(filePath, runConfig);
 
         logger.info("Setup webdriver");
         DriverWrapper.setDriver(property);
