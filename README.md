@@ -15,3 +15,5 @@ Apply Selenium framework to training about Java automation scripting
 - Update logger for all file
 - Adding read config from config.properties file
 - Add allure report to project
+- Send test result to email after run complete
+- Add docker to project
