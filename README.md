@@ -1,10 +1,10 @@
 # Auto Google Form
 
-Script to automatic fill Google Form data
+Script to automatic fill Google Form data.
 
 ## Description
 
-Apply Selenium framework to practising about Java automation scripting
+Apply Selenium framework to practising about Java automation scripting. Aiming to be able to run in both Windows, macOS and Linux environment.
 
 ## Get started
 
