@@ -1,4 +1,4 @@
-package core.util;
+package core.util.common;
 
 import java.util.Date;
 

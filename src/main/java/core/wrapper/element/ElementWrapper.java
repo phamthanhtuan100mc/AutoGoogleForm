@@ -1,7 +1,7 @@
 package core.wrapper.element;
 
 import core.util.common.Constant;
-import core.util.StopWatch;
+import core.util.common.StopWatch;
 import core.wrapper.driver.DriverWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import core.util.Timer;
+import core.util.common.Timer;
 
 public class ElementWrapper {
     private static final Logger log = LogManager.getLogger(ElementWrapper.class);

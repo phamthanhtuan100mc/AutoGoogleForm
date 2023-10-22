@@ -1,4 +1,4 @@
-package core.util;
+package core.util.common;
 
 public class Timer {
     public static void sleep(int millisecond) {

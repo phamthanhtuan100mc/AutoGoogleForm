@@ -4,7 +4,7 @@ Script to automatic fill Google Form data
 
 ## Description
 
-Apply Selenium framework to training about Java automation scripting
+Apply Selenium framework to practising about Java automation scripting
 
 ## Get started
 
