@@ -15,7 +15,7 @@ Aiming to be able to run in both Windows, macOS and Linux environment.
 - Handle **random fill result** for all Questions
 - Update **createWebDriver** method corresponding to each browser and local/remote mode 
 - Update **browser.setting.json** run config profile
-- **Update logger** for all file
+- Understand & update **logger** for all file
 - Add the **read config** from config.properties file
 - Add **allure report** to project
 - **Send test result to email** after run complete

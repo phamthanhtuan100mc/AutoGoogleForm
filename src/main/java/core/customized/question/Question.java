@@ -2,7 +2,6 @@ package core.customized.question;
 
 import core.util.enums.QuestionType;
 import core.wrapper.element.ElementWrapper;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -15,11 +14,11 @@ public abstract class Question extends ElementWrapper implements IFillResultBeha
 
     private final static String _locatorRadio = "//div[@role='radio']";
     private final static String _locatorLSQ_MCGQ = "/parent::div/parent::div/preceding-sibling::div"; // Linear Scale Question - Multiple Choice Grid Question
-    private final static String _locatorCheckboxGrid = "/parent::div/parent::div/parent::div[@aria-hidden=\"true\"]";
+    private final static String _locatorCheckboxGrid = "/parent::div/parent::div/parent::div[@aria-hidden='true']";
     private final static String _locatorCheckboxGroup = "//div[@role='checkbox']";
     private final static String _locatorDate = "//input[@type='date']";
     private final static String _locatorDropdown = "//div[@role='listbox']";
-    private final static String _locatorMultipleChoiceGrid = "/parent::div/parent::div/parent::div/parent::div[@aria-hidden=\"true\"]";
+    private final static String _locatorMultipleChoiceGrid = "/parent::div/parent::div/parent::div/parent::div[@aria-hidden='true']";
     private final static String _locatorParagraph = "//textarea";
     private final static String _locatorShortAnswer = "//input[@type='text']";
     private final static String _locatorRequireStatus = "//span[text()=' *']";
@@ -50,9 +49,10 @@ public abstract class Question extends ElementWrapper implements IFillResultBeha
 //    } --no longer used
 
     public void identifyRequireStatus() {
-        if (this.findElement(By.xpath(_locatorRequireStatus)).getSize() != null) {
-            requireStatus = true;
-        }
+        // Need to be clarified why there is are 2 if
+//        if (this.findElement(By.xpath(_locatorRequireStatus)).getSize() != null) {
+//            requireStatus = true;
+//        }
         if (new ElementWrapper(this.getElementXpath() + _locatorRequireStatus).getElement() != null) {
             requireStatus = true;
         }

@@ -13,7 +13,7 @@ public class ShortAnswerQuestion extends Question {
     private final By _txtInput = By.xpath(".//input type='text'");
 
     // Elements
-    private WebElement inputTextBox = this.findElement(_txtInput);
+    private ElementWrapper inputTextBox = this.findElement(_txtInput);
 
     public ShortAnswerQuestion(WebElement element) {
         super(element);

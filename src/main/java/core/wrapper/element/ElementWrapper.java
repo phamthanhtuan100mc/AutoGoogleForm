@@ -5,24 +5,17 @@ import core.util.common.StopWatch;
 import core.wrapper.driver.DriverWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import org.openqa.selenium.InvalidSelectorException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import core.util.common.Timer;
 
-public class ElementWrapper {
+public class ElementWrapper implements WebElement {
     private static final Logger log = LogManager.getLogger(ElementWrapper.class);
     private String _xpath;
     private final int _elementTimeout = Constant.WAIT_TIMEOUT; //In second
@@ -46,27 +39,37 @@ public class ElementWrapper {
 
         this._xpath = locator;
         this._by = By.xpath(this._xpath);
-        this._element = getElement();
+        this._element = _driver.findElement(this._by);
     }
 
     public String getElementXpath() {
         return this._xpath;
     }
 
-    public WebElement findElement(By by) {
-        return _driver.findElement(by);
+    public WebElement getElement() {
+        return this._element;
     }
 
+    @Override
+    public SearchContext getShadowRoot() {
+        return WebElement.super.getShadowRoot();
+    }
+
+    @Override
     public List<WebElement> findElements(By by) {
         return this._driver.findElements(by);
     }
 
-    public WebElement getElement() {
+    public ElementWrapper findElement(By by) {
         try {
-            return findElement(this._by);
+            return new ElementWrapper(this._driver.findElement(this._by));
         } catch (NoSuchElementException | InvalidSelectorException e) {
 //            log.error(nsee.getMessage());
 //            throw new RuntimeException(nsee);
+            return null;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
@@ -102,7 +105,7 @@ public class ElementWrapper {
     public void scrollIntoView() {
         this.waitForDisplay();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) this._driver;
-        jsExecutor.executeScript("arguments[0].scrollIntoView(false);", getElement());
+        jsExecutor.executeScript("arguments[0].scrollIntoView(false);", this.getElement());
     }
 
     public void clear() {
@@ -115,6 +118,66 @@ public class ElementWrapper {
         }
     }
 
+    @Override
+    public String getTagName() {
+        return null;
+    }
+
+    @Override
+    public String getDomProperty(String name) {
+        return WebElement.super.getDomProperty(name);
+    }
+
+    @Override
+    public String getDomAttribute(String name) {
+        return WebElement.super.getDomAttribute(name);
+    }
+
+    @Override
+    public String getAttribute(String name) {
+        return null;
+    }
+
+    @Override
+    public String getAriaRole() {
+        return WebElement.super.getAriaRole();
+    }
+
+    @Override
+    public String getAccessibleName() {
+        return WebElement.super.getAccessibleName();
+    }
+
+    @Override
+    public boolean isSelected() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    @Override
+    public String getText() {
+        return null;
+    }
+
+    @Override
+    public void click() {
+
+    }
+
+    @Override
+    public void submit() {
+
+    }
+
+    @Override
+    public void sendKeys(CharSequence... keysToSend) {
+
+    }
+
     public void type(String value, boolean isWait) {
         if (!isWait) {
             Timer.sleep(1000);
@@ -122,7 +185,7 @@ public class ElementWrapper {
             this.waitForDisplay();
         }
         try {
-            this.getElement().sendKeys(value);
+            this.sendKeys(value);
         } catch (Exception e) {
             log.error(e.getMessage());
 //            throw new RuntimeException(e);
@@ -138,8 +201,29 @@ public class ElementWrapper {
         this.type(value);
     }
 
+    @Override
     public boolean isDisplayed() {
         return this.isDisplayed(this._elementTimeout);
+    }
+
+    @Override
+    public Point getLocation() {
+        return null;
+    }
+
+    @Override
+    public Dimension getSize() {
+        return null;
+    }
+
+    @Override
+    public Rectangle getRect() {
+        return null;
+    }
+
+    @Override
+    public String getCssValue(String propertyName) {
+        return null;
     }
 
     public boolean isDisplayed(long timeOut) {
@@ -161,4 +245,8 @@ public class ElementWrapper {
     }
 
 
+    @Override
+    public <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {
+        return null;
+    }
 }

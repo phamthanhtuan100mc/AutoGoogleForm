@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 public abstract class BaseTest {
     private static final Logger logger = LogManager.getLogger(BaseTest.class);
     DriverProperty property;
-    String runConfig = "windows.chrome.local.headless";
+    String runConfig = "windows.chrome.local";
     String filePath = StringHandler.createFilePathByOS(ItemType.FILE, "src", "main", "resources", "browser.setting.json");
 
     @BeforeMethod
