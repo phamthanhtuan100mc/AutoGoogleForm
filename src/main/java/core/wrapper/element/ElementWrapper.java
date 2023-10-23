@@ -5,10 +5,17 @@ import core.util.common.StopWatch;
 import core.wrapper.driver.DriverWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import org.openqa.selenium.InvalidSelectorException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -20,7 +27,7 @@ public class ElementWrapper {
     private String _xpath;
     private final int _elementTimeout = Constant.WAIT_TIMEOUT; //In second
     private By _by;
-    private final WebDriver driver = DriverWrapper.getInstance().getDriver();
+    private final WebDriver _driver = DriverWrapper.getInstance().getDriver();
     private Actions action;
     private WebElement _element;
 
@@ -47,11 +54,11 @@ public class ElementWrapper {
     }
 
     public WebElement findElement(By by) {
-        return driver.findElement(by);
+        return _driver.findElement(by);
     }
 
     public List<WebElement> findElements(By by) {
-        return driver.findElements(by);
+        return this._driver.findElements(by);
     }
 
     public WebElement getElement() {
@@ -80,7 +87,7 @@ public class ElementWrapper {
 
     public void waitForDisplay(int timeOut) {
         try {
-            new WebDriverWait(this.driver, Duration.ofSeconds(timeOut))
+            new WebDriverWait(this._driver, Duration.ofSeconds(timeOut))
                     .until(ExpectedConditions.visibilityOfElementLocated(this._by));
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -90,6 +97,12 @@ public class ElementWrapper {
 
     public void waitForDisplay() {
         this.waitForDisplay(this._elementTimeout);
+    }
+
+    public void scrollIntoView() {
+        this.waitForDisplay();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) this._driver;
+        jsExecutor.executeScript("arguments[0].scrollIntoView(false);", getElement());
     }
 
     public void clear() {

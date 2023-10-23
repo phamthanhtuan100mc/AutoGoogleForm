@@ -8,10 +8,10 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Question extends ElementWrapper {
+public abstract class Question extends ElementWrapper implements IFillResultBehavior {
 
     private boolean requireStatus = false;
-    private FillResultBehavior fillResultBehavior;
+//    private IFillResultBehavior fillResultBehavior; --no longer used
 
     private final static String _locatorRadio = "//div[@role='radio']";
     private final static String _locatorLSQ_MCGQ = "/parent::div/parent::div/preceding-sibling::div"; // Linear Scale Question - Multiple Choice Grid Question
@@ -33,9 +33,9 @@ public abstract class Question extends ElementWrapper {
         identifyRequireStatus();
     }
 
-    public void setFillResultBehavior(FillResultBehavior behavior) {
-        fillResultBehavior = behavior;
-    }
+//    public void setFillResultBehavior(IFillResultBehavior behavior) {
+//        fillResultBehavior = behavior;
+//    } --no longer used
 
     public boolean getRequireStatus() {
         return this.requireStatus;
@@ -45,9 +45,9 @@ public abstract class Question extends ElementWrapper {
         this.requireStatus = status;
     }
 
-    public void performFillResult() {
-        fillResultBehavior.fillResult(this);
-    }
+//    public void performFillResult() {
+//        fillResultBehavior.fillResult();
+//    } --no longer used
 
     public void identifyRequireStatus() {
         if (this.findElement(By.xpath(_locatorRequireStatus)).getSize() != null) {
