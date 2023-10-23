@@ -46,7 +46,7 @@ public abstract class Question extends ElementWrapper {
     }
 
     public void performFillResult() {
-        fillResultBehavior.fillResult();
+        fillResultBehavior.fillResult(this);
     }
 
     public void identifyRequireStatus() {

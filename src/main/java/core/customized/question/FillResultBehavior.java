@@ -1,5 +1,5 @@
 package core.customized.question;
 
 public interface FillResultBehavior {
-    void fillResult();
+    void fillResult(Question question);
 }

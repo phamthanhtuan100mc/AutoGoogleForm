@@ -10,6 +10,7 @@ Apply Selenium framework to practising about Java automation scripting. Aiming t
 
 ### Things to do
 
+- Handle random fill result for all Questions
 - Update **createWebDriver** method corresponding to each browser and local/remote mode 
 - Update **browser.setting.json** run config profile
 - Update logger for all file

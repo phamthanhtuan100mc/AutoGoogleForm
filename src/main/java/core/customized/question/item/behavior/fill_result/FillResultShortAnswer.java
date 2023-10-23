@@ -1,13 +1,14 @@
 package core.customized.question.item.behavior.fill_result;
 
 import core.customized.question.FillResultBehavior;
+import core.customized.question.Question;
 
 public class FillResultShortAnswer implements FillResultBehavior {
 
     @Override
-    public void fillResult() {
+    public void fillResult(Question question) {
         // do something
-        System.out.println("Test fill result for short answer question");
+        System.out.println("Test fill result for: " + question.getClass());
     }
 
 }
