@@ -11,6 +11,7 @@ Aiming to be able to run in both Windows, macOS and Linux environment.
 
 ### Things to be done
 
+- Change all WebElement to ElementWrapper 
 - Handle **random fill result** for all Questions
 - Update **createWebDriver** method corresponding to each browser and local/remote mode 
 - Update **browser.setting.json** run config profile
