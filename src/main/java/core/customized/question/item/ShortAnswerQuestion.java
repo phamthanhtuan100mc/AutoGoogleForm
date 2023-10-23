@@ -4,11 +4,16 @@ import core.customized.question.IFillResultBehavior;
 import core.customized.question.Question;
 import core.customized.question.item.old.behavior.fill_result.FillResultShortAnswer;
 import core.wrapper.element.ElementWrapper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ShortAnswerQuestion extends Question {
 
-    private ElementWrapper txtInput;
+    // Locators
+    private final By _txtInput = By.xpath(".//input type='text'");
+
+    // Elements
+    private WebElement inputTextBox = this.findElement(_txtInput);
 
     public ShortAnswerQuestion(WebElement element) {
         super(element);
@@ -22,6 +27,14 @@ public class ShortAnswerQuestion extends Question {
 
     @Override
     public void fillResult() {
+        // Randomly create some text
+        String randomText = "";
 
+        // input random text to input textbox
+        this.fillResult(randomText);
+    }
+
+    public void fillResult(String text) {
+        this.inputTextBox.sendKeys(text);
     }
 }
