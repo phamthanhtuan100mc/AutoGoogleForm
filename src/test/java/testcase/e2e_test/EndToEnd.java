@@ -1,17 +1,18 @@
 package testcase.e2e_test;
 
-import core.customized.question.Question;
-import core.page_object.HomePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
+
+import core.customized.question.Question;
+import core.page_object.HomePage;
 import testcase.BaseTest;
 
 import java.util.List;
 
 public class EndToEnd extends BaseTest {
 
-    private static final Logger log = LogManager.getLogger(EndToEnd.class);
+    private static final Logger logger = LogManager.getLogger(EndToEnd.class);
     HomePage homePage;
     List<Question> questionList;
 
@@ -19,13 +20,13 @@ public class EndToEnd extends BaseTest {
     public void TC_E2E() {
         homePage = new HomePage();
 
-        log.info("Open google form");
+        logger.info("Open google form");
         homePage.openPage();
 
-        log.info("Get list of question");
+        logger.info("Get list of question");
         questionList = homePage.getQuestionList();
 
-        log.info("Random fill answer for all question");
+        logger.info("Random fill answer for all question");
         homePage.randomFillAllResult(questionList);
 
     }

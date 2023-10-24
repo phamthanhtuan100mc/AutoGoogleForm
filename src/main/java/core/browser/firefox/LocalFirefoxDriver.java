@@ -1,10 +1,11 @@
 package core.browser.firefox;
 
-import core.browser.IWebDriver;
-import core.wrapper.driver.DriverProperty;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import core.browser.IWebDriver;
+import core.wrapper.driver.DriverProperty;
 
 public class LocalFirefoxDriver implements IWebDriver {
 

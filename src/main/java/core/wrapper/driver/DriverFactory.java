@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 
 public class DriverFactory {
 
-    private static final Logger log = LogManager.getLogger(DriverFactory.class);
+    private static final Logger logger = LogManager.getLogger(DriverFactory.class);
     protected static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
     public static void createWebDriver(String browser, boolean remote) {
@@ -67,7 +67,7 @@ public class DriverFactory {
             drivers.get();
         } catch (Exception e) {
             e.printStackTrace();
-            log.error(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 }

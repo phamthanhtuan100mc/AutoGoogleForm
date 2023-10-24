@@ -1,8 +1,8 @@
 package core.util.helper;
 
-import core.util.enums.ItemType;
-
 import java.io.File;
+
+import core.util.enums.ItemType;
 
 public class StringHandler {
 

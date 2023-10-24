@@ -1,14 +1,15 @@
 package core.util.helper;
 
-import java.io.*;
-
-import core.util.enums.ItemType;
-import core.util.enums.OSType;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import core.util.enums.OSType;
+
 public class Helper {
-    private static final Logger log = LogManager.getLogger(Helper.class);
+    private static final Logger logger = LogManager.getLogger(Helper.class);
 
 
 
@@ -27,14 +28,14 @@ public class Helper {
                         if (line == null) {
                             break;
                         }
-                        log.info("Command result - " + line);
+                        logger.info("Command result - " + line);
                     }
                 case UNKNOWN: default:
-                    log.error("Operation System is not recognized");
+                    logger.error("Operation System is not recognized");
             }
         } catch (IOException ioe) {
-            log.error("Could not execute command");
-            log.error(ioe);
+            logger.error("Could not execute command");
+            logger.error(ioe);
         }
     }
 

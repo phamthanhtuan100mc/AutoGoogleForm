@@ -1,7 +1,5 @@
 package core.wrapper.element;
 
-import core.util.common.Constant;
-import core.util.common.StopWatch;
 import core.wrapper.driver.DriverWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,14 +7,16 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+
+import core.util.common.Constant;
+import core.util.common.StopWatch;
 import core.util.common.Timer;
 
 public class ElementWrapper implements WebElement {
-    private static final Logger log = LogManager.getLogger(ElementWrapper.class);
+    private static final Logger logger = LogManager.getLogger(ElementWrapper.class);
     private String _xpath;
     private final int _elementTimeout = Constant.WAIT_TIMEOUT; //In second
     private By _by;
@@ -69,7 +69,7 @@ public class ElementWrapper implements WebElement {
 //            throw new RuntimeException(nsee);
             return null;
         } catch (Exception e) {
-            log.error(e.getMessage());
+            logger.error(e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -87,7 +87,7 @@ public class ElementWrapper implements WebElement {
                 elementList.add(new ElementWrapper(this._xpath + "[%d]", i));
             }
         } catch (Exception e) {
-            log.error(e.getMessage());
+            logger.error(e.getMessage());
 //            throw new RuntimeException(e);
         }
         return elementList;
@@ -98,7 +98,7 @@ public class ElementWrapper implements WebElement {
             new WebDriverWait(this._driver, Duration.ofSeconds(timeOut))
                     .until(ExpectedConditions.visibilityOfElementLocated(this._by));
         } catch (Exception e) {
-            log.error(e.getMessage());
+            logger.error(e.getMessage());
 //            throw new RuntimeException(e);
         }
     }
@@ -118,7 +118,7 @@ public class ElementWrapper implements WebElement {
         try {
             this.getElement().clear();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            logger.error(e.getMessage());
 //            throw new RuntimeException(e);
         }
     }
@@ -192,7 +192,7 @@ public class ElementWrapper implements WebElement {
         try {
             this.sendKeys(value);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            logger.error(e.getMessage());
 //            throw new RuntimeException(e);
         }
     }
@@ -240,7 +240,7 @@ public class ElementWrapper implements WebElement {
             try {
                 isDisplay = this.getElement().isDisplayed();
             } catch (NoSuchElementException | StaleElementReferenceException | NullPointerException e) {
-                log.error(e.getMessage());
+                logger.error(e.getMessage());
 //            throw new RuntimeException(e);
             }
             Timer.sleep(500);

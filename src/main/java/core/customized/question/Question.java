@@ -1,11 +1,11 @@
 package core.customized.question;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import core.util.enums.QuestionType;
 import core.wrapper.element.ElementWrapper;
 import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Question extends ElementWrapper implements IFillResultBehavior {
 

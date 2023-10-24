@@ -1,12 +1,12 @@
 package core.wrapper.driver;
 
-import core.util.enums.BrowserType;
-import core.util.enums.ExecuteMode;
-
 import java.util.List;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
+
+import core.util.enums.BrowserType;
+import core.util.enums.ExecuteMode;
 
 /**
  * Selenium Webdriver properties.

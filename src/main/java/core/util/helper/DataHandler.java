@@ -1,15 +1,15 @@
 package core.util.helper;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import core.wrapper.driver.DriverProperty;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class DataHandler {
     private static final Logger logger = LogManager.getLogger(DataHandler.class);

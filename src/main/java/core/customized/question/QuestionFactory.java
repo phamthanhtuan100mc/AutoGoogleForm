@@ -1,13 +1,14 @@
 package core.customized.question;
 
-import core.customized.question.item.*;
-import core.util.enums.QuestionType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
+import core.customized.question.item.*;
+import core.util.enums.QuestionType;
+
 public class QuestionFactory {
-    private static final Logger log = LogManager.getLogger(QuestionFactory.class);
+    private static final Logger logger = LogManager.getLogger(QuestionFactory.class);
     private static Question question = null;
 
     public static Question getSpecificQuestion(QuestionType type, WebElement element) {
@@ -47,7 +48,7 @@ public class QuestionFactory {
                     question = null;
             }
         } catch (NullPointerException npe) {
-            log.error(npe.getMessage());
+            logger.error(npe.getMessage());
         }
 
         return question;
@@ -88,7 +89,7 @@ public class QuestionFactory {
                     break;
             }
         } catch (NullPointerException npe) {
-            log.error(npe.getMessage());
+            logger.error(npe.getMessage());
         }
 
         return question;

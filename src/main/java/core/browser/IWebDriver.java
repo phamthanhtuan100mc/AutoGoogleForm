@@ -1,7 +1,8 @@
 package core.browser;
 
-import core.wrapper.driver.DriverProperty;
 import org.openqa.selenium.WebDriver;
+
+import core.wrapper.driver.DriverProperty;
 
 public interface IWebDriver {
 

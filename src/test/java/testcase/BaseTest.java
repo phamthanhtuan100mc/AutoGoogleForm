@@ -1,18 +1,16 @@
 package testcase;
 
-import core.util.common.Constant;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
 import core.util.enums.ItemType;
-import core.util.enums.OSType;
-import core.util.helper.Helper;
 import core.util.helper.DataHandler;
 import core.util.helper.StringHandler;
 import core.wrapper.driver.DriverWrapper;
 import core.wrapper.driver.DriverProperty;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 public abstract class BaseTest {
     private static final Logger logger = LogManager.getLogger(BaseTest.class);
@@ -22,11 +20,7 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void setupTest() {
-
-        logger.info("Exit all running chromedriver before test");
-        Helper.excCommand(OSType.WINDOWS, Constant.COMMAND_END_RUNNING_CHROMEDRIVER);
-
-        logger.info("Read run browser config from file");
+        logger.info("Read run browser config from browser.setting.json file");
         property = DataHandler.loadBrowserSetting(filePath, runConfig);
 
         logger.info("Setup Webdriver");

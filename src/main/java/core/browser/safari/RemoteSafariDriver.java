@@ -1,10 +1,11 @@
 package core.browser.safari;
 
-import core.browser.IWebDriver;
-import core.wrapper.driver.DriverProperty;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
+import core.browser.IWebDriver;
+import core.wrapper.driver.DriverProperty;
 
 public class RemoteSafariDriver implements IWebDriver {
     /**
