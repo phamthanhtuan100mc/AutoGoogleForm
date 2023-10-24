@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 public abstract class BaseTest {
     private static final Logger logger = LogManager.getLogger(BaseTest.class);
     DriverProperty property;
-    String runConfig = "windows.chrome.local";
+    String runConfig = "windows.chrome.local.headless";
     String filePath = StringHandler.createFilePathByOS(ItemType.FILE, "src", "main", "resources", "browser.setting.json");
 
     @BeforeMethod
@@ -27,7 +27,7 @@ public abstract class BaseTest {
         logger.info("Read run browser config from file");
         property = DataHandler.loadBrowserSetting(filePath, runConfig);
 
-        logger.info("Setup webdriver");
+        logger.info("Setup Webdriver");
         DriverWrapper.setDriver(property);
 //        DriverWrapper.setPageLoadTimeOut();
     }

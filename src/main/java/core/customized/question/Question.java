@@ -102,8 +102,6 @@ public abstract class Question extends ElementWrapper implements IFillResultBeha
             }
         }
 
-        // Test
-        System.out.println(questionType);
         return questionType;
     }
 

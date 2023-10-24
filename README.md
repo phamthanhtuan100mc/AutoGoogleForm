@@ -11,15 +11,15 @@ Aiming to be able to run in both Windows, macOS and Linux environment.
 
 ### Things to be done
 
-- Change all WebElement to ElementWrapper 
-- Handle **random fill result** for all Questions
-- Update **createWebDriver** method corresponding to each browser and local/remote mode 
-- Update **browser.setting.json** run config profile
-- Understand & update **logger** for all file
-- Add the **read config** from config.properties file
-- Add **allure report** to project
-- **Send test result to email** after run complete
-- Add **docker** to project
-- Handle **wait for browser load fully** not working in macOS
-- Add **screenshot when running test** and add to report
-- Update **element wrapper** to follow SOLID principle
+- [ ] Change all WebElement to ElementWrapper 
+- [ ] Handle **random fill result** for all Questions
+- [ ] Update **createWebDriver** method corresponding to each browser and local/remote mode 
+- [ ] Update **browser.setting.json** run config profile
+- [ ] Understand & update **logger** for all file
+- [ ] Add the **read config** from config.properties file
+- [ ] Add **allure report** to project
+- [ ] **Send test result to email** after run complete
+- [ ] Add **docker** to project
+- [ ] Handle **wait for browser load fully** not working in macOS
+- [ ] Add **screenshot when running test** and add to report
+- [ ] Update **element wrapper** to follow SOLID principle
