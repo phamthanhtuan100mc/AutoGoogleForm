@@ -39,7 +39,7 @@ public class ElementWrapper implements WebElement {
 
         this._xpath = locator;
         this._by = By.xpath(this._xpath);
-        this._element = _driver.findElement(this._by);
+        this._element = this.findElement(this._by);
     }
 
     public String getElementXpath() {
@@ -60,9 +60,10 @@ public class ElementWrapper implements WebElement {
         return this._driver.findElements(by);
     }
 
-    public ElementWrapper findElement(By by) {
+    @Override
+    public WebElement findElement(By by) {
         try {
-            return new ElementWrapper(this._driver.findElement(this._by));
+            return this._driver.findElement(this._by);
         } catch (NoSuchElementException | InvalidSelectorException e) {
 //            log.error(nsee.getMessage());
 //            throw new RuntimeException(nsee);
@@ -72,6 +73,10 @@ public class ElementWrapper implements WebElement {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public ElementWrapper findElement(String locator) {
+        return new ElementWrapper(this.findElement(By.xpath(locator)));
     }
 
     public List<ElementWrapper> getElementList() {
@@ -175,7 +180,7 @@ public class ElementWrapper implements WebElement {
 
     @Override
     public void sendKeys(CharSequence... keysToSend) {
-
+        this._element.sendKeys(keysToSend);
     }
 
     public void type(String value, boolean isWait) {

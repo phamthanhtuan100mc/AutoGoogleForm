@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 public class ShortAnswerQuestion extends Question {
 
     // Locators
-    private final By _txtInput = By.xpath(".//input type='text'");
+    private final String _txtInput = ".//input type='text'";
 
     // Elements
     private ElementWrapper inputTextBox = this.findElement(_txtInput);
@@ -35,6 +35,6 @@ public class ShortAnswerQuestion extends Question {
     }
 
     public void fillResult(String text) {
-        this.inputTextBox.sendKeys(text);
+        this.inputTextBox.type(text);
     }
 }
