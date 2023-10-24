@@ -11,8 +11,6 @@ import core.util.enums.OSType;
 public class Helper {
     private static final Logger logger = LogManager.getLogger(Helper.class);
 
-
-
     public static void excCommand(OSType osType, String command) {
         try {
             switch (osType) {
@@ -30,8 +28,8 @@ public class Helper {
                         }
                         logger.info("Command result - " + line);
                     }
-                case UNKNOWN: default:
-                    logger.error("Operation System is not recognized");
+                case UNKNOWN:
+                    logger.error("Operation System recognize failed");
             }
         } catch (IOException ioe) {
             logger.error("Could not execute command");

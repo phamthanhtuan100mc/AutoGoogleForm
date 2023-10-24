@@ -3,6 +3,8 @@ package core.customized.question.item;
 import core.customized.question.IFillResultBehavior;
 import core.customized.question.Question;
 import core.customized.question.item.old.behavior.fill_result.FillResultShortAnswer;
+import core.util.common.Constant;
+import core.util.helper.DataFakerHandler;
 import core.wrapper.element.ElementWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -28,13 +30,13 @@ public class ShortAnswerQuestion extends Question {
     @Override
     public void fillResult() {
         // Randomly create some text
-        String randomText = "";
+        String randomText = DataFakerHandler.getFaker().lorem().sentence();
 
         // input random text to input textbox
         this.fillResult(randomText);
     }
 
     public void fillResult(String text) {
-        this.inputTextBox.type(text);
+        this.inputTextBox.enter(text);
     }
 }

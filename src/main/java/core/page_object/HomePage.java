@@ -33,6 +33,7 @@ public class HomePage extends BasePage {
 
     public void ramdomFillResult(Question question) {
 //        question.performFillResult(); --no longer used
+        question.fillResult();
     }
 
 }
