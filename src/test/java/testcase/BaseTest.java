@@ -1,5 +1,6 @@
 package testcase;
 
+import core.util.common.Constant;
 import core.util.enums.ItemType;
 import core.util.enums.OSType;
 import core.util.helper.Helper;
@@ -7,6 +8,7 @@ import core.util.helper.DataHandler;
 import core.util.helper.StringHandler;
 import core.wrapper.driver.DriverWrapper;
 import core.wrapper.driver.DriverProperty;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterMethod;
@@ -22,19 +24,18 @@ public abstract class BaseTest {
     public void setupTest() {
 
         logger.info("Exit all running chromedriver before test");
-        Helper.excCommand(OSType.WINDOWS, "taskkill /f /im chromedriver.exe");
+        Helper.excCommand(OSType.WINDOWS, Constant.COMMAND_END_RUNNING_CHROMEDRIVER);
 
         logger.info("Read run browser config from file");
         property = DataHandler.loadBrowserSetting(filePath, runConfig);
 
         logger.info("Setup Webdriver");
         DriverWrapper.setDriver(property);
-//        DriverWrapper.setPageLoadTimeOut();
     }
 
     @AfterMethod
     public void tearDown() {
-        logger.info("Quit webdriver");
+        logger.info("Quit Webdriver");
         DriverWrapper.closeBrowser();
     }
 }
