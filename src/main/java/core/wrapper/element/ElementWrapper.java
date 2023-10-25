@@ -63,7 +63,7 @@ public class ElementWrapper implements WebElement {
     @Override
     public WebElement findElement(By by) {
         try {
-            return this._driver.findElement(this._by);
+            return this._driver.findElement(by);
         } catch (NoSuchElementException | InvalidSelectorException e) {
 //            log.error(nsee.getMessage());
 //            throw new RuntimeException(nsee);

@@ -3,6 +3,7 @@
         "browser": "chrome",
         "isRemote": false,
         "arguments": [
+            "disable-infobars"
         ],
         "capabilities": {
         }
