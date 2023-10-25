@@ -28,8 +28,10 @@ public class Helper {
                         }
                         logger.info("Command result - " + line);
                     }
+                    break;
                 case UNKNOWN:
                     logger.error("Operation System recognize failed");
+                    break;
             }
         } catch (IOException ioe) {
             logger.error("Could not execute command");
