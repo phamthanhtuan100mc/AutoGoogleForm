@@ -11,8 +11,9 @@ Aiming to be able to run in both Windows, macOS and Linux environment.
 
 ### Things to be done
 
-- [ ] Change all WebElement to ElementWrapper 
+- [x] ~~Change all WebElement to ElementWrapper~~ (maybe done)
 - [ ] Handle **random fill result** for all Questions
+- [ ] Implement selenium grid
 - [ ] Update **createWebDriver** method corresponding to each browser and local/remote mode 
 - [ ] Update **browser.setting.json** run config profile
 - [ ] Understand & update **logger** for all file
@@ -23,3 +24,9 @@ Aiming to be able to run in both Windows, macOS and Linux environment.
 - [ ] Handle **wait for browser load fully** not working in macOS
 - [ ] Add **screenshot when running test** and add to report
 - [ ] Update **element wrapper** to follow SOLID principle
+
+### How to run this project
+1. Step 1
+2. Step 2
+3. Step 3
+4. Step ...
