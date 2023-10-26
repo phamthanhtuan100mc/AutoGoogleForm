@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 public class ShortAnswerQuestion extends Question {
 
     // Locators
-    private final String _txtInput = ".//input type='text'";
+    private final String _txtInput = ".//input[@type='text']";
 
     // Elements
     private ElementWrapper inputTextBox = this.findElement(_txtInput);

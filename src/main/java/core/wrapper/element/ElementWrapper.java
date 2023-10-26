@@ -76,7 +76,9 @@ public class ElementWrapper implements WebElement {
     }
 
     public ElementWrapper findElement(String locator) {
-        return new ElementWrapper(this.findElement(By.xpath(locator)));
+        ElementWrapper tempElement = new ElementWrapper(this.findElement(By.xpath(locator)));
+        tempElement._xpath = _xpath + locator.substring(1);
+        return tempElement;
     }
 
     public List<ElementWrapper> getElementList() {
