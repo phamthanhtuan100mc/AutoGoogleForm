@@ -5,7 +5,7 @@
 git add .
 
 # commit the change
-git commit -m "(auto) quickly update"
+git commit -m "(auto) quickly commit"
 
 # push update to github
 git push
