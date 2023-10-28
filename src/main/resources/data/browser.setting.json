@@ -1,0 +1,43 @@
+{
+    "windows.chrome.local": {
+        "browser": "chrome",
+        "isRemote": false,
+        "remoteUrl": "",
+        "arguments": [
+            "disable-infobars"
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.chrome.local.headless": {
+        "browser": "chrome",
+        "isRemote": false,
+        "remoteUrl": "",
+        "arguments": [
+            "--headless=new",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.chrome.remote": {
+        "browser": "chrome",
+        "isRemote": true,
+        "remoteUrl": "http://192.168.88.181:4444/",
+        "arguments": [
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.chrome.remote.headless": {
+        "browser": "chrome",
+        "isRemote": true,
+        "remoteUrl": "http://192.168.88.181:4444/",
+        "arguments": [
+            "--headless=new",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+        }
+    }
+}

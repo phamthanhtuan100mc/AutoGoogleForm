@@ -13,8 +13,9 @@ public class DriverProperty {
     private String browser;
     private String mode;
     private boolean isRemote;
+    private String remoteUrl;
     private List<String> arguments = new ArrayList<>();
-    private Map<String, String> capabilities = new HashMap<>();
+    private Map<String, String> desiredCapabilities = new HashMap<>();
 
     public String getBrowser() {
         return browser;
@@ -38,7 +39,14 @@ public class DriverProperty {
 
     public void setIsRemote(boolean remote) {
         isRemote = remote;
-        setMode(isRemote == true ? "Remote" : "Local");
+    }
+
+    public void setRemoteUrl(String url) {
+        this.remoteUrl = url;
+    }
+
+    public String getRemoteUrl() {
+        return this.remoteUrl;
     }
 
     public List<String> getArguments() {
@@ -49,11 +57,11 @@ public class DriverProperty {
         this.arguments = arguments;
     }
 
-    public Map<String, String> getCapabilities() {
-        return capabilities;
+    public Map<String, String> getDesiredCapabilities() {
+        return desiredCapabilities;
     }
 
-    public void setCapabilities(Map<String, String> capabilities) {
-        this.capabilities = capabilities;
+    public void setDesiredCapabilities(Map<String, String> desiredCapabilities) {
+        this.desiredCapabilities = desiredCapabilities;
     }
 }

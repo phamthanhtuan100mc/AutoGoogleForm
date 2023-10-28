@@ -11,6 +11,14 @@ import core.util.common.Constant;
 import core.util.enums.OSType;
 import core.util.helper.Helper;
 import core.wrapper.driver.DriverProperty;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RemoteChromeDriver implements IWebDriver {
     private static final Logger logger = LogManager.getLogger(RemoteChromeDriver.class);
@@ -23,10 +31,20 @@ public class RemoteChromeDriver implements IWebDriver {
      */
     @Override
     public WebDriver createWebDriver(DriverProperty property) {
-        logger.info("Exit all running Chromedriver");
-        Helper.excCommand(OSType.WINDOWS, Constant.COMMAND_END_RUNNING_CHROMEDRIVER);
+        try {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
-        WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
+            for (String key: property.getDesiredCapabilities().keySet()) {
+                desiredCapabilities.setCapability(key, property.getDesiredCapabilities().get(key));
+            }
+            chromeOptions.merge(desiredCapabilities);
+            URL url = new URL(property.getRemoteUrl());
+
+            return new RemoteWebDriver(url, chromeOptions);
+        } catch (MalformedURLException mue) {
+            logger.error("Create remote Chromedriver fail: " + mue.getMessage());
+            return null;
+        }
     }
 }

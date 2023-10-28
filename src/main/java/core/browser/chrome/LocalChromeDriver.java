@@ -30,13 +30,13 @@ public class LocalChromeDriver implements IWebDriver {
 
         WebDriverManager.chromedriver().setup();
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments(property.getArguments());
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments(property.getArguments());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        options.merge(capabilities);
+        chromeOptions.merge(capabilities);
 
-        return new ChromeDriver(options);
+        return new ChromeDriver(chromeOptions);
     }
 }
