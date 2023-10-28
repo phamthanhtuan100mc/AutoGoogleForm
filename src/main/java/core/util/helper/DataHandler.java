@@ -24,7 +24,9 @@ public class DataHandler {
             Reader reader = Files.newBufferedReader(Paths.get(filePath));
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
             JsonObject runConfigObject = jsonObject.getAsJsonObject(runConfig);
+
             DriverProperty property = gson.fromJson(runConfigObject, DriverProperty.class);
+            property.setMode(property.isRemote() ? "Local" : "Remote");
 
             return property;
         } catch (IOException ioe) {
