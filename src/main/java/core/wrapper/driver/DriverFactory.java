@@ -14,6 +14,35 @@ public class DriverFactory {
     private static final Logger logger = LogManager.getLogger(DriverFactory.class);
     protected static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
+    public static void setDriver(DriverProperty property) {
+        // Example of className:
+        // core.browser.chrome.LocalChromeDriver
+        String className = String.format("core.browser.%s.%s%sDriver",
+                property.getBrowser(),
+                property.getMode(), StringUtils.capitalize(property.getBrowser()));
+
+        // Using Java reflection technique
+        try {
+            Class<?> clazz = Class.forName(className);
+            Method method = clazz.getMethod("createWebDriver", DriverProperty.class);
+            Object instance = clazz.getDeclaredConstructor().newInstance();
+
+            WebDriver driver = (WebDriver) method.invoke(instance, property);
+            drivers.set(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        }
+    }
+
+
+
+
+
+    /**
+     * Below methods are no longer used
+     */
+
     public static void createWebDriver(String browser, boolean remote) {
         if (remote) {
             switch (browser) {
@@ -46,28 +75,5 @@ public class DriverFactory {
 
     public static WebDriver getDriver() {
         return drivers.get();
-    }
-
-    public static void setDriver(DriverProperty property) {
-        // Example of className:
-        // core.browser.chrome.LocalChromeDriver
-        String className = String.format("core.browser.%s.%s%sDriver",
-                property.getBrowser(),
-                property.getMode(), StringUtils.capitalize(property.getBrowser()));
-
-        // Using Java reflection technique
-        try {
-            Class<?> clazz = Class.forName(className);
-            Method method = clazz.getMethod("createWebDriver", DriverProperty.class);
-            Object instance = clazz.getDeclaredConstructor().newInstance();
-
-            WebDriver driver = (WebDriver) method.invoke(instance, property);
-            drivers.set(driver);
-            System.out.println("Test thread: ");
-            drivers.get();
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.error(e.getMessage());
-        }
     }
 }
