@@ -1,9 +1,6 @@
 package core.wrapper.driver;
 
-import java.util.List;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 import core.util.enums.BrowserType;
 import core.util.enums.ExecuteMode;
@@ -13,10 +10,10 @@ import core.util.enums.ExecuteMode;
  * Load data from file then convert to property object
  */
 public class DriverProperty {
-    private String browser = BrowserType.CHROME.toString();
-    private String mode = ExecuteMode.LOCAL.toString();
-    private boolean isRemote = false;
-    private List<String> arguments = Arrays.asList("--headless=new");
+    private String browser;
+    private String mode;
+    private boolean isRemote;
+    private List<String> arguments = new ArrayList<>();
     private Map<String, String> capabilities = new HashMap<>();
 
     public String getBrowser() {
@@ -50,5 +47,13 @@ public class DriverProperty {
 
     public void setArguments(List<String> arguments) {
         this.arguments = arguments;
+    }
+
+    public Map<String, String> getCapabilities() {
+        return capabilities;
+    }
+
+    public void setCapabilities(Map<String, String> capabilities) {
+        this.capabilities = capabilities;
     }
 }
