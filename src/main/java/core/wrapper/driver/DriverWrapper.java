@@ -2,8 +2,10 @@ package core.wrapper.driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
@@ -62,6 +64,7 @@ public class DriverWrapper extends DriverFactory {
     public static void waitForPageLoad() {
         try {
             WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(pageTimeout));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
             wait.until(webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
         } catch (Exception e) {
             logger.error(e.getMessage());

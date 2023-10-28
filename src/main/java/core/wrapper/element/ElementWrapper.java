@@ -82,6 +82,8 @@ public class ElementWrapper implements WebElement {
     }
 
     public List<ElementWrapper> getElementList() {
+        this.waitForPresent();
+        this.waitForDisplay();
         List<ElementWrapper> elementList = new ArrayList<>();
         try {
             int count = findElements(this._by).size();
@@ -107,6 +109,21 @@ public class ElementWrapper implements WebElement {
 
     public void waitForDisplay() {
         this.waitForDisplay(this._elementTimeout);
+    }
+
+    public void waitForPresent(int timeOut) {
+        try {
+            new WebDriverWait(this._driver, Duration.ofSeconds(timeOut))
+                    .until(ExpectedConditions.presenceOfElementLocated(this._by));
+
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+    }
+
+    public void waitForPresent() {
+        this.waitForPresent(this._elementTimeout);
+
     }
 
     public void scrollIntoView() {
@@ -167,7 +184,7 @@ public class ElementWrapper implements WebElement {
 
     @Override
     public String getText() {
-        return null;
+        return this._element.getAttribute("value");
     }
 
     @Override

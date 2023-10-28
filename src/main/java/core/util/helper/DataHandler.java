@@ -26,7 +26,7 @@ public class DataHandler {
             JsonObject runConfigObject = jsonObject.getAsJsonObject(runConfig);
 
             DriverProperty property = gson.fromJson(runConfigObject, DriverProperty.class);
-            property.setMode(property.isRemote() ? "Local" : "Remote");
+            property.setMode(property.isRemote() ? "Remote" : "Local");
 
             return property;
         } catch (IOException ioe) {
