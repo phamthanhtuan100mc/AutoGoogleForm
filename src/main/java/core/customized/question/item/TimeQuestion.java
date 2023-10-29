@@ -2,12 +2,15 @@ package core.customized.question.item;
 
 import core.customized.question.Question;
 import core.customized.question.item.old.behavior.fill_result.FillResultTime;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
 public class TimeQuestion extends Question {
+    private static final Logger logger = LogManager.getLogger(TimeQuestion.class);
 
     /*
-     * Need handle AM/PM for english version
+     * Need to handle AM/PM select for english version
      */
 
     public TimeQuestion(WebElement element) {
@@ -22,6 +25,7 @@ public class TimeQuestion extends Question {
 
     @Override
     public void fillResult() {
+        logger.info("Fill result for Time Question");
 
     }
 }

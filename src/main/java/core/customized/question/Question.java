@@ -95,10 +95,13 @@ public abstract class Question extends ElementWrapper implements IFillResultBeha
          */
         } else if (new ElementWrapper(element.getElementXpath() + _locatorShortAnswer).getElement() != null) {
             int count = new ElementWrapper(element.getElementXpath() + _locatorShortAnswer).getElementList().size();
-            if (count == 2) {
-                questionType = QuestionType.TIME;
-            } else {
+            if (count == 1) {
                 questionType = QuestionType.SHORT_ANSWER;
+            } else if (count == 2){
+                questionType = QuestionType.TIME;
+            } else if (count == 3) {
+                // handle for firefox
+                questionType = QuestionType.DATE;
             }
         }
 

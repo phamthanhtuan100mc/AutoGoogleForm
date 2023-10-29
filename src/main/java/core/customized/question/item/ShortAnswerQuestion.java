@@ -13,7 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ShortAnswerQuestion extends Question {
-    private static final Logger logger = LogManager.getLogger(HomePage.class);
+    private static final Logger logger = LogManager.getLogger(ShortAnswerQuestion.class);
 
     // Locators
     private final String _txtInput = ".//input[@type='text']";
