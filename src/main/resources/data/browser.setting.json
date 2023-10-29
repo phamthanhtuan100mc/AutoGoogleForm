@@ -27,6 +27,9 @@
         "arguments": [
         ],
         "capabilities": {
+            "browserName": "chrome",
+            "platformName": "Windows 11",
+            "browserVersion": "latest"
         }
     },
     "windows.chrome.remote.headless": {

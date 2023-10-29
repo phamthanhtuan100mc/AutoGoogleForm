@@ -33,6 +33,8 @@ public class ShortAnswerQuestion extends Question {
 
     @Override
     public void fillResult() {
+        logger.info("Fill result for Short Answer Question");
+
         // Randomly create some text
         String randomText = DataFakerHandler.getFaker().lorem().sentence();
 
