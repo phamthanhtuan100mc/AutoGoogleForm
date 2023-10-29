@@ -10,16 +10,18 @@ import core.util.helper.DataHandler;
 import core.util.helper.StringHandler;
 import core.wrapper.driver.DriverWrapper;
 import core.wrapper.driver.DriverProperty;
+import org.testng.annotations.Parameters;
 
 
 public abstract class BaseTest {
     private static final Logger logger = LogManager.getLogger(BaseTest.class);
     DriverProperty property;
-    String runConfig = "windows.chrome.local.headless";
+//    String runConfig = "windows.chrome.local";
     String filePath = StringHandler.createFilePathByOS(ItemType.FILE, "src", "main", "resources", "data/browser.setting.json");
 
     @BeforeMethod
-    public void setupTest() {
+    @Parameters("runConfig")
+    public void setupTest(String runConfig) {
         logger.info("Load run config: " + runConfig);
         property = DataHandler.loadBrowserSetting(filePath, runConfig);
 
