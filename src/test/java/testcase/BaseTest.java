@@ -16,11 +16,11 @@ public abstract class BaseTest {
     private static final Logger logger = LogManager.getLogger(BaseTest.class);
     DriverProperty property;
     String runConfig = "windows.chrome.local.headless";
-    String filePath = StringHandler.createFilePathByOS(ItemType.FILE, "src", "main", "resources", "browser.setting.json");
+    String filePath = StringHandler.createFilePathByOS(ItemType.FILE, "src", "main", "resources", "data/browser.setting.json");
 
     @BeforeMethod
     public void setupTest() {
-        logger.info("Read run browser config from browser.setting.json file");
+        logger.info("Load run config: " + runConfig);
         property = DataHandler.loadBrowserSetting(filePath, runConfig);
 
         logger.info("Setup Webdriver");

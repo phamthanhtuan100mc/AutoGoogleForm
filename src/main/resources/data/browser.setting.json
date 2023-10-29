@@ -4,7 +4,6 @@
         "isRemote": false,
         "remoteUrl": "",
         "arguments": [
-            "disable-infobars"
         ],
         "capabilities": {
         }
@@ -41,6 +40,56 @@
             "--disable-gpu"
         ],
         "capabilities": {
+            "browserName": "chrome",
+            "platformName": "Windows 11",
+            "browserVersion": "latest"
+        }
+    },
+
+    "windows.firefox.local": {
+        "browser": "firefox",
+        "isRemote": false,
+        "remoteUrl": "",
+        "arguments": [
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.firefox.local.headless": {
+        "browser": "firefox",
+        "isRemote": false,
+        "remoteUrl": "",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.firefox.remote": {
+        "browser": "firefox",
+        "isRemote": true,
+        "remoteUrl": "http://192.168.88.181:4444/",
+        "arguments": [
+        ],
+        "capabilities": {
+            "browserName": "firefox",
+            "platformName": "Windows 11",
+            "browserVersion": "latest"
+        }
+    },
+    "windows.firefox.remote.headless": {
+        "browser": "firefox",
+        "isRemote": true,
+        "remoteUrl": "http://192.168.88.181:4444/",
+        "arguments": [
+            "--headless=new",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+            "browserName": "firefox",
+            "platformName": "Windows 11",
+            "browserVersion": "latest"
         }
     }
 }
