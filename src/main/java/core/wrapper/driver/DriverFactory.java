@@ -14,6 +14,10 @@ public class DriverFactory {
     private static final Logger logger = LogManager.getLogger(DriverFactory.class);
     protected static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
+    public static WebDriver getDriver() {
+        return drivers.get();
+    }
+
     public static void setDriver(DriverProperty property) {
         // Example of className:
         // core.browser.chrome.LocalChromeDriver
@@ -71,9 +75,5 @@ public class DriverFactory {
         }
         ChromeDriverService service = new ChromeDriverService.Builder().build();
         drivers.set(new ChromeDriver());
-    }
-
-    public static WebDriver getDriver() {
-        return drivers.get();
     }
 }
